@@ -1,0 +1,20 @@
+version: "3"
+services:
+  # nginx
+  dev-back-nginx:
+    image: nginx:stable-alpine
+    container_name: dev-data-nginx
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "8096:8096"
+    networks:
+      - br_log
+      - br_app
+
+networks:
+  br_log:
+    external: true
+  br_app:
+    external: true

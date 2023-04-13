@@ -1,0 +1,50 @@
+version: '3'
+services:
+  # 도커 컨테이너 대시보드
+  portainer:
+    image: 'portainer/portainer-ce:$PORTAINER_VERSION'
+    ports:
+      - '$PORTAINER_PORT:9000'
+    restart: unless-stopped
+    volumes:
+      # Docker sock
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: false
+      # Data
+      - type: bind
+        source: $PORTAINER_DIR/data
+        target: /data
+        read_only: false
+    networks:
+      - br_log
+
+  # Nginx 대시보드
+  nginx-manager:
+    image: 'jc21/nginx-proxy-manager:$NGINX_MANAGER_VERSION'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '$NGINX_MANAGER_PORT:81'
+    volumes:
+      # Data
+      - type: bind
+        source: $NGINX_MANAGER_DIR/data
+        target: /data
+        read_only: false
+      # SSL
+      - type: bind
+        source: $NGINX_MANAGER_DIR/letsencrypt
+        target: /etc/letsencrypt
+        read_only: false
+    networks:
+      - br_log
+      - br_app
+
+networks:
+  br_log:
+    external: true
+  br_app:
+    external: true

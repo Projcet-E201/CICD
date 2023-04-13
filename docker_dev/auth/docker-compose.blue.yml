@@ -1,0 +1,21 @@
+version: "3"
+services:
+  # back - blue
+  dev-back-blue:
+    container_name: dev-auth-blue
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROFILE: "devblue"
+    ports:
+      - "8094:8094"
+    networks:
+      - br_log
+      - br_app
+
+networks:
+  br_log:
+    external: true
+  br_app:
+    external: true

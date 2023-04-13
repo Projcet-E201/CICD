@@ -1,0 +1,21 @@
+version: "3"
+services:
+  # back - green
+  dev-back-green:
+    container_name: dev-auth-green
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROFILE: "devgreen"
+    ports:
+      - "8095:8095"
+    networks:
+      - br_log
+      - br_app
+
+networks:
+  br_log:
+    external: true
+  br_app:
+    external: true
