@@ -1,29 +1,31 @@
-# https://velog.io/@yjj4899/Ubuntu-22.04-Jenkins-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+# java 11, ubuntu 20버전으로 설명
+# https://hyunmin1906.tistory.com/272
 
 
 # 1. 자바 설치
 sudo apt install openjdk-11-jre -y
 java -version
 
-# 2. jenkins 실행명령어
-curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+# 2.  Jenkins 저장소 Key 다운로드
+wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
 
-# 만약 apt 인증예외가 발생한다면 ca-certificates 패키지를 업데이트 한다
-# https://hamonikr.org/hamoni_board/106932
-sudo apt install ca-certificates
+# 3. sources.list 에 추가
+echo deb http://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
 
-# 3. 업데이트 & 설치
-sudo apt update
+# 4. Key 등록
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCEF32E745F2C3D5
+
+# 5. 업데이트 & 설치
+sudo apt-get update
 sudo apt install jenkins -y
 
-# 4. 젠킨스 실행확인
+# 6. 젠킨스 실행확인
 sudo systemctl status jenkins
 
-# 5. 부팅 시 젠킨스 시작되는지 확인
+# 7. 부팅 시 젠킨스 시작되는지 확인
 sudo systemctl is-enabled jenkins
 
-# 6. 젠킨스 초기 비밀번호 확인
+# 8. 젠킨스 초기 비밀번호 확인
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 
