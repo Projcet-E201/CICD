@@ -9,4 +9,3 @@ mkdir $HOME/docker-volume/mariadb/data -p
 
 mkdir $HOME/docker-volume/elastic-search/dev/data -p
 mkdir $HOME/docker-volume/elastic-search/prod/data -p 
-    
