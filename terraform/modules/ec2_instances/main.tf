@@ -11,7 +11,7 @@ variable "instance_name_prefix" { type = string }
 # instance 생성
 # for_each루프를 사용해, AMI_ID, 인스턴스 유형, 키 이름, 서브넷 ID로 인스턴스 생성
 resource "aws_instance" "this" {
-  for_each = range(var.instance_count)
+  for_each = toset([for idx in range(var.instance_count) : tostring(idx)])
 
   ami           = var.ami_id
   instance_type = "t3.medium"
@@ -26,12 +26,20 @@ resource "aws_instance" "this" {
     Name      = "${var.instance_name_prefix}-${each.key + 1}"
     Terraform = "true"
   }
+
+  ebs_block_device {
+    device_name = "/dev/xvdb"
+    volume_type = "gp3"
+    volume_size = 50
+  }
+
+  user_data = file("${path.module}/user_data.sh")
 }
 
 # 탄력적 IP 할당
 # foreach를 사용해 각 IP를 이전 단계에서 생성한 인스턴스와 연결한다.
 resource "aws_eip" "this" {
-  for_each = range(var.instance_count)
+  for_each = toset([for idx in range(var.instance_count) : tostring(idx)])
 
   instance = aws_instance.this[each.key].id
   vpc      = true
