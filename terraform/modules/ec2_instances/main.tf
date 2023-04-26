@@ -35,16 +35,3 @@ resource "aws_instance" "this" {
 
   user_data = file("${path.module}/user_data.sh")
 }
-
-# 탄력적 IP 할당
-# foreach를 사용해 각 IP를 이전 단계에서 생성한 인스턴스와 연결한다.
-resource "aws_eip" "this" {
-  for_each = toset([for idx in range(var.instance_count) : tostring(idx)])
-
-  instance = aws_instance.this[each.key].id
-  vpc      = true
-
-  tags = {
-    Name = "${var.instance_name_prefix}-eip-${each.key + 1}"
-  }
-}

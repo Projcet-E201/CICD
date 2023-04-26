@@ -20,6 +20,16 @@ resource "aws_subnet" "this" {
   }
 }
 
+# Internet Gateway
+resource "aws_internet_gateway" "this" {
+  vpc_id = aws_vpc.this.id
+
+  tags = {
+    Name = "ssafy-semse-igw"
+  }
+}
+
+
 # 출력변수 
 # 다른 구성이나 모듈에서 사용할 수 있는 출력 변수로 내보낸다.
 output "vpc_id" {
