@@ -1,11 +1,10 @@
 # Edit with .env
-mkdir $HOME/docker-volume/nginx-manager/data/frontend-beta -p
-mkdir $HOME/docker-volume/nginx-manager/data/frontend-prod -p
+mkdir $HOME/docker-volume/nginx-manager/data/frontend -p
+mkdir $HOME/docker-volume/nginx-manager/data/api -p
+mkdir $HOME/docker-volume/nginx-manager/data/datagenerator -p
+mkdir $HOME/docker-volume/nginx-manager/data/datadivision -p
 mkdir $HOME/docker-volume/nginx-manager/letsencrypt -p
 
 mkdir $HOME/docker-volume/portainer/data -p
 
-mkdir $HOME/docker-volume/mariadb/data -p
-
-mkdir $HOME/docker-volume/elastic-search/dev/data -p
-mkdir $HOME/docker-volume/elastic-search/prod/data -p 
+mkdir $HOME/docker-volume/mysql/data -p

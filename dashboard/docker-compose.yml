@@ -40,11 +40,8 @@ services:
         target: /etc/letsencrypt
         read_only: false
     networks:
-      - br_log
       - br_app
 
 networks:
-  br_log:
-    external: true
   br_app:
     external: true

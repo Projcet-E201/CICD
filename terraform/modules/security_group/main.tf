@@ -32,6 +32,30 @@ resource "aws_security_group_rule" "kafka_outbound" {
   cidr_blocks = ["10.0.1.0/24"]
 }
 
+# Inbound rules for Docker API (Portainer)
+# Allow tcp traffic for 2375.
+resource "aws_security_group_rule" "docker_api_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 2375
+  to_port     = 2375
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"] # Adjust this to restrict access if needed
+}
+
+# Outbound rules for Docker API (Portainer)
+# Allow tcp traffic for 2375.
+resource "aws_security_group_rule" "docker_api_outbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "egress"
+  from_port   = 2375
+  to_port     = 2375
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"] # Adjust this to restrict access if needed
+}
+
 output "security_group_id" {
   value = aws_security_group.this.id
 }

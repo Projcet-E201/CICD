@@ -1,21 +1,19 @@
 version: "3"
 services:
-  # back - green
-  dev-back-green:
-    container_name: dev-data-green
+  datagenerator-server-1:
+    container_name: dev-back-green
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        PROFILE: "devgreen"
+        PROFILE: "${CLIENT_PROFILE}"
     ports:
-      - "8098:8098"
+      - "8080:8080"
     networks:
-      - br_log
       - br_app
 
 networks:
-  br_log:
-    external: true
   br_app:
     external: true
+
+# CLIENT_PROFILE=client1 docker-compose up -d

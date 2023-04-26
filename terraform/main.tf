@@ -9,6 +9,10 @@ locals {
   kafka_instance_count = 3
   ami_id = "ami-0785accd4f9bbbbe3"
   pem_key = "semsekey"
+
+  common_tags = {
+    Terraform = "true"
+  }
 }
 
 # VPC 모듈

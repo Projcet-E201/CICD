@@ -1,8 +1,7 @@
 # https://www.baeldung.com/spring-boot-docker-start-with-profile
 
-FROM azul/zulu-openjdk:17
+FROM azul/zulu-openjdk:11
 ARG PROFILE
-ARG SECRET
 ENV PROFILE=${PROFILE}
 VOLUME /tmp
 COPY build/libs/*.jar app.jar
