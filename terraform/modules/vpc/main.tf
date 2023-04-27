@@ -2,24 +2,43 @@
 # CIDR 블록 "10.0.0.0/16"은 10.0.0.0에서 10.0.255.255까지의 IP 주소 범위를 나타냅니다.
 resource "aws_vpc" "this" {
   cidr_block = "10.0.0.0/16"
+  enable_dns_support = true
+  enable_dns_hostnames = true
 
   tags = {
     Name = "ssafy-semse-vpc"
   }
 }
 
-resource "aws_vpc_dhcp_options" "this" {
-  domain_name_servers = ["10.0.0.2"]
+# Route 53 호스팅 영역 및 인스턴스에 대한 A 레코드 생성 (이 코드를 루트 모듈에 추가하세요)
+resource "aws_route53_zone" "example" {
+  name = "semse.info"
 
-  tags = {
-    Name = "ssafy-semse-dhcp-options"
+  vpc {
+    vpc_id = aws_vpc.this.id
   }
 }
 
+# Route53 A records for data instances
+resource "aws_route53_record" "instances" {
+  for_each = module.data_instances.eni_private_ips
 
-resource "aws_vpc_dhcp_options_association" "this" {
-  vpc_id          = aws_vpc.this.id
-  dhcp_options_id = aws_vpc_dhcp_options.this.id
+  zone_id = aws_route53_zone.example.zone_id
+  name    = "data-instance-${each.key}.semse.info"
+  type    = "A"
+  ttl     = "300"
+  records = [each.value]
+}
+
+# Route53 A records for kafka instances
+resource "aws_route53_record" "kafka_instances" {
+  for_each = module.kafka_instances.eni_private_ips
+
+  zone_id = aws_route53_zone.example.zone_id
+  name    = "kafka-instance-${each.key}.semse.info"
+  type    = "A"
+  ttl     = "300"
+  records = [each.value]
 }
 
 
