@@ -88,6 +88,17 @@ resource "aws_security_group_rule" "all_outbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# ping 테스트를 위한 icmp 허용
+resource "aws_security_group_rule" "icmp_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = -1
+  to_port     = -1
+  protocol    = "icmp"
+  cidr_blocks = ["10.0.1.0/24"]
+}
+
 
 output "security_group_id" {
   value = aws_security_group.this.id
