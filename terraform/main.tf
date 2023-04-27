@@ -112,6 +112,7 @@ resource "aws_route53_record" "kafka_instances" {
   records = [each.value]
 }
 
+
 output "jenkins_instance_public_ip" {
   value = aws_instance.jenkins.public_ip
 }
