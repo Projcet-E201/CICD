@@ -34,6 +34,28 @@ resource "aws_instance" "this" {
   user_data = file("${path.module}/user_data.sh")
 }
 
+# Route table
+resource "aws_route_table" "this" {
+  vpc_id = aws_vpc.this.id
+
+  tags = {
+    Name = "ssafy-semse-route-table"
+  }
+}
+
+# Route for internet-bound traffic
+resource "aws_route" "internet_access" {
+  route_table_id         = aws_route_table.this.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.this.id
+}
+
+# Associate the route table with the subnet
+resource "aws_route_table_association" "this" {
+  subnet_id      = var.subnet_id
+  route_table_id = aws_route_table.this.id
+}
+
 
 # ENI 생성 및 인스턴스에 연결 (이 코드를 인스턴스 모듈에 추가하세요)
 resource "aws_network_interface" "example" {
