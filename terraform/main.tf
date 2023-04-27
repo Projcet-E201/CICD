@@ -85,6 +85,34 @@ resource "aws_eip" "jenkins" {
 }
 
 
+# Route 53 호스팅 영역 및 인스턴스에 대한 A 레코드 생성 (이 코드를 루트 모듈에 추가하세요)
+resource "aws_route53_zone" "example" {
+  name = "semse.info"
+}
+
+# Route53 A records for data instances
+resource "aws_route53_record" "instances" {
+  for_each = module.data_instances.eni_private_ips
+
+  zone_id = aws_route53_zone.example.zone_id
+  name    = "data-instance-${each.key}.semse.info"
+  type    = "A"
+  ttl     = "300"
+  records = [each.value]
+}
+
+# Route53 A records for kafka instances
+resource "aws_route53_record" "kafka_instances" {
+  for_each = module.kafka_instances.eni_private_ips
+
+  zone_id = aws_route53_zone.example.zone_id
+  name    = "kafka-instance-${each.key}.semse.info"
+  type    = "A"
+  ttl     = "300"
+  records = [each.value]
+}
+
+
 output "jenkins_instance_public_ip" {
   value = aws_instance.jenkins.public_ip
 }
