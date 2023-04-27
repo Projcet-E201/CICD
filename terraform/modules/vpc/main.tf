@@ -19,29 +19,6 @@ resource "aws_route53_zone" "example" {
   }
 }
 
-# Route53 A records for data instances
-resource "aws_route53_record" "instances" {
-  for_each = module.data_instances.eni_private_ips
-
-  zone_id = aws_route53_zone.example.zone_id
-  name    = "data-instance-${each.key}.semse.info"
-  type    = "A"
-  ttl     = "300"
-  records = [each.value]
-}
-
-# Route53 A records for kafka instances
-resource "aws_route53_record" "kafka_instances" {
-  for_each = module.kafka_instances.eni_private_ips
-
-  zone_id = aws_route53_zone.example.zone_id
-  name    = "kafka-instance-${each.key}.semse.info"
-  type    = "A"
-  ttl     = "300"
-  records = [each.value]
-}
-
-
 # Subnet
 # CIDR 블록 "10.0.1.0/24"는 10.0.1.0에서 10.0.1.255까지의 IP 주소 범위를 나타냅니다.
 resource "aws_subnet" "this" {
