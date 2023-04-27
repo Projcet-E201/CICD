@@ -45,6 +45,12 @@ resource "aws_route" "internet_access" {
   gateway_id             = aws_internet_gateway.this.id
 }
 
+# Associate the route table with the subnet
+resource "aws_route_table_association" "this" {
+  subnet_id      = aws_subnet.this.id
+  route_table_id = aws_route_table.this.id
+}
+
 
 # 출력변수 
 # 다른 구성이나 모듈에서 사용할 수 있는 출력 변수로 내보낸다.
