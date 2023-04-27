@@ -14,6 +14,7 @@ resource "aws_vpc" "this" {
 resource "aws_subnet" "this" {
   vpc_id     = aws_vpc.this.id
   cidr_block = "10.0.1.0/24"
+  map_public_ip_on_launch = true # 자동 public ip 연결
 
   tags = {
     Name = "ssafy-semse-subnet"
