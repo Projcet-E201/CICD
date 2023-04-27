@@ -95,7 +95,7 @@ resource "aws_route53_record" "instances" {
   for_each = module.data_instances.eni_private_ips
 
   zone_id = aws_route53_zone.example.zone_id
-  name    = "data-instance-${each.key}.semse.info"
+  name    = "data-instance-${each.key + 1}.semse.info"
   type    = "A"
   ttl     = "300"
   records = [each.value]
@@ -106,7 +106,7 @@ resource "aws_route53_record" "kafka_instances" {
   for_each = module.kafka_instances.eni_private_ips
 
   zone_id = aws_route53_zone.example.zone_id
-  name    = "kafka-instance-${each.key}.semse.info"
+  name    = "kafka-instance-${each.key + 1}.semse.info"
   type    = "A"
   ttl     = "300"
   records = [each.value]
