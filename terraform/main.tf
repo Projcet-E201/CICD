@@ -59,7 +59,7 @@ module "kafka_instances" {
 # jenkins + anislbe로 9대의 서버의 배포를 담당한다.
 resource "aws_instance" "jenkins" {
   ami           = local.ami_id
-  instance_type = "t3.small"
+  instance_type = "t3.medium"
   key_name      = local.pem_key
   subnet_id     = module.vpc.subnet_id
 
