@@ -29,6 +29,22 @@ resource "aws_internet_gateway" "this" {
   }
 }
 
+# Route table
+resource "aws_route_table" "this" {
+  vpc_id = aws_vpc.this.id
+
+  tags = {
+    Name = "ssafy-semse-route-table"
+  }
+}
+
+# Route for internet-bound traffic
+resource "aws_route" "internet_access" {
+  route_table_id         = aws_route_table.this.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.this.id
+}
+
 
 # 출력변수 
 # 다른 구성이나 모듈에서 사용할 수 있는 출력 변수로 내보낸다.
