@@ -8,6 +8,17 @@ resource "aws_security_group" "this" {
   vpc_id      = var.vpc_id
 }
 
+# SSH 접속허용
+resource "aws_security_group_rule" "ssh_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
 # kafka 인스턴스에 대한 인바운드 규칙
 # 9092에 대해서 tcp 트래픽 허용한다.
 resource "aws_security_group_rule" "kafka_inbound" {
