@@ -55,13 +55,44 @@ module "kafka_instances" {
 }
 
 
+# 젠킨스 생성 인스턴스
+# jenkins + anislbe로 9대의 서버의 배포를 담당한다.
+resource "aws_instance" "jenkins" {
+  ami           = local.ami_id
+  instance_type = "t3.small"
+  key_name      = local.pem_key
+  subnet_id     = module.vpc.subnet_id
+
+  vpc_security_group_ids = [
+    module.security_group.security_group_id
+  ]
+
+  user_data = file("${path.module}/jenkins_user_data.sh")
+
+  tags ={
+    Name="jenkins-instance"
+  }
+}
+
+
+# Elastic IP for Jenkins instance
+resource "aws_eip" "jenkins" {
+  instance = aws_instance.jenkins.id
+
+  tags ={
+    Name = "jenkins-instance-eip"
+  }
+}
+
+
 # Route 53 호스팅 영역 및 인스턴스에 대한 A 레코드 생성 (이 코드를 루트 모듈에 추가하세요)
 resource "aws_route53_zone" "example" {
   name = "semse.info"
 }
 
+# Route53 A records for data instances
 resource "aws_route53_record" "instances" {
-  for_each = module.data_instances.eni_private_ips
+  for_each = { for k, v in module.data_instances.instance_public_ips : k => v }
 
   zone_id = aws_route53_zone.example.zone_id
   name    = "data-instance-${each.key}.semse.info"
@@ -70,14 +101,19 @@ resource "aws_route53_record" "instances" {
   records = [each.value]
 }
 
+# Route53 A records for kafka instances
 resource "aws_route53_record" "kafka_instances" {
-  for_each = module.kafka_instances.eni_private_ips
+  for_each = { for k, v in module.kafka_instances.instance_public_ips : k => v }
 
   zone_id = aws_route53_zone.example.zone_id
   name    = "kafka-instance-${each.key}.semse.info"
   type    = "A"
   ttl     = "300"
   records = [each.value]
+}
+
+output "jenkins_instance_public_ip" {
+  value = aws_instance.jenkins.public_ip
 }
 
 output "zone_id" {
