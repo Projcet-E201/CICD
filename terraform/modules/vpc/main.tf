@@ -8,6 +8,20 @@ resource "aws_vpc" "this" {
   }
 }
 
+resource "aws_vpc_dhcp_options" "this" {
+  domain_name_servers = ["10.0.0.2"]
+
+  tags = {
+    Name = "ssafy-semse-dhcp-options"
+  }
+}
+
+
+resource "aws_vpc_dhcp_options_association" "this" {
+  vpc_id          = aws_vpc.this.id
+  dhcp_options_id = aws_vpc_dhcp_options.this.id
+}
+
 
 # Subnet
 # CIDR 블록 "10.0.1.0/24"는 10.0.1.0에서 10.0.1.255까지의 IP 주소 범위를 나타냅니다.
