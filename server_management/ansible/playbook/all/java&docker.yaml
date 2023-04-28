@@ -3,11 +3,6 @@
   hosts: all                     # 이 플레이의 대상 호스트 (인벤토리 파일에서 정의됨)
   become: yes                     # 필요한 경우 권한을 상승시킵니다 (sudo로 권한 상승)
   tasks:                          # 이 플레이에 대해 실행할 작업 목록
-    - name: apt 캐시 업데이트
-      ansible.builtin.apt:
-        update_cache: yes
-        cache_valid_time: 3600
-
     - name: Java OpenJDK 11 설치
       ansible.builtin.apt:
         name: openjdk-11-jdk
