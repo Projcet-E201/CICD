@@ -31,7 +31,6 @@ resource "aws_instance" "this" {
     volume_size = 50
   }
 
-  user_data = file("${path.module}/user_data.sh")
 }
 
 # ENI 생성 및 인스턴스에 연결 (이 코드를 인스턴스 모듈에 추가하세요)

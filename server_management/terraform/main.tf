@@ -67,8 +67,6 @@ resource "aws_instance" "jenkins" {
     module.security_group.security_group_id
   ]
 
-  user_data = file("${path.module}/jenkins_user_data.sh")
-
   tags ={
     Name="jenkins-instance"
   }
