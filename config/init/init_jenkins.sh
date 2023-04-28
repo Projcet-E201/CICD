@@ -12,10 +12,10 @@ wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add
 echo deb http://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
 
 # 4. 키 등록
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCEF32E745F2C3D5
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
 
 # 5. 업데이트 & 설치
-sudo apt update
+sudo apt-get update
 sudo apt install jenkins -y
 
 # 6. 젠킨스 실행확인
@@ -37,5 +37,4 @@ sudo service jenkins restart
 # https://chomdoo.tistory.com/31
 
 # 키 등록에러(15숫자영어에는 본인 값 넣을 것!)
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
