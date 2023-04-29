@@ -63,6 +63,8 @@ resource "aws_instance" "jenkins" {
   key_name      = local.pem_key
   subnet_id     = module.vpc.subnet_id
 
+  user_data = ""
+
   vpc_security_group_ids = [
     module.security_group.security_group_id
   ]
