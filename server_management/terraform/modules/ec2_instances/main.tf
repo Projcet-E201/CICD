@@ -56,3 +56,7 @@ resource "aws_network_interface" "example" {
 output "eni_private_ips" {
   value = { for k, v in aws_network_interface.example : k => v.private_ip }
 }
+
+output "eni_public_ips" {
+  value = { for k, v in aws_instance.this : k => v.public_ip }
+}
