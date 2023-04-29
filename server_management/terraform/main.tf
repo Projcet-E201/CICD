@@ -39,6 +39,8 @@ module "data_instances" {
   subnet_id      = module.vpc.subnet_id
   security_group_id = module.security_group.security_group_id
   instance_name_prefix = "data-instance"
+
+  user_data = ""
 }
 
 # 카프가 생성 인스턴스 모듈
@@ -52,6 +54,8 @@ module "kafka_instances" {
   subnet_id      = module.vpc.subnet_id
   security_group_id = module.security_group.security_group_id
   instance_name_prefix = "kafka-instance"
+
+  user_data = ""
 }
 
 
