@@ -5,6 +5,11 @@
     app_image: scofe/data_generator
 
   tasks:
+    - name: Install Docker SDK for Python
+      ansible.builtin.pip:
+        name: docker
+        state: present
+
     # Docker 이미지를 끌어 오기
     - name: Pull Spring Boot Docker image
       ansible.builtin.docker_image:
