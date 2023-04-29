@@ -13,8 +13,8 @@
         state: present
 
     - name: Java version check
-      shell:
-        command: java --version
+      ansible.builtin.command:
+        _raw_params: java --version
 
 - name: 플레이 2 - 원격 호스트에 Docker & Docker-compose 설치 및 구성
   hosts: all
