@@ -10,7 +10,7 @@ all:
   children:
     ansible_server:
       hosts:
-        10.0.1.21:
+        10.0.1.48:
     data_instance_server:
       hosts:
         10.0.1.155:
