@@ -20,6 +20,8 @@ resource "aws_instance" "this" {
 
   vpc_security_group_ids = [var.security_group_id]
 
+  user_data = ""
+
   tags = {
     Name      = "${var.instance_name_prefix}-${each.key + 1}"
     Terraform = "true"
