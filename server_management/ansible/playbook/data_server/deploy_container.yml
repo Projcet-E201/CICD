@@ -1,0 +1,19 @@
+- name: Remove existing container if it's running
+  ansible.builtin.docker_container:
+    name: "{{ app_container_name }}"
+    state: absent
+  ignore_errors: yes
+
+- name: Run and configure Spring Boot Docker container
+  ansible.builtin.docker_container:
+    name: "{{ app_container_name }}"
+    image: "{{ app_image }}"
+    state: started
+    recreate: yes
+    exposed_ports:
+      - "{{ app_port }}"
+    ports:
+      - "127.0.0.1:{{ app_port }}:{{ app_port }}"
+    restart_policy: always
+    env:
+      PROFILE: "{{ app_profile }}"
