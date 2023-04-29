@@ -26,30 +26,12 @@ resource "aws_instance" "this" {
     Name      = "${var.instance_name_prefix}-${each.key + 1}"
     Terraform = "true"
   }
-  
+
   root_block_device {
     volume_type = "gp3"
     volume_size = 50
   }
 
-}
-
-# ENI 생성 및 인스턴스에 연결 (이 코드를 인스턴스 모듈에 추가하세요)
-resource "aws_network_interface" "example" {
-  for_each = toset([for idx in range(var.instance_count) : tostring(idx)])
-
-  subnet_id       = var.subnet_id
-  security_groups = [var.security_group_id]
-
-  attachment {
-    instance     = aws_instance.this[each.key].id
-    device_index = 1
-  }
-
-  tags = {
-    Name      = "${var.instance_name_prefix}-${each.key + 1}"
-    Terraform = "true"
-  }
 }
 
 output "eni_private_ips" {
