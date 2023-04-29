@@ -70,9 +70,13 @@
         state: restarted
       become: yes
 
+    - name: Get Docker Compose URL
+      ansible.builtin.shell: echo "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)"
+      register: docker_compose_url
+
     - name: Download and install docker-compose
       ansible.builtin.get_url:
-        url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)"
+        url: "{{ docker_compose_url.stdout }}"
         dest: /usr/local/bin/docker-compose
         mode: "0755"
 
