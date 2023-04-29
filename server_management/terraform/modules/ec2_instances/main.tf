@@ -26,9 +26,8 @@ resource "aws_instance" "this" {
     Name      = "${var.instance_name_prefix}-${each.key + 1}"
     Terraform = "true"
   }
-
-  ebs_block_device {
-    device_name = "/dev/xvdb"
+  
+  root_block_device {
     volume_type = "gp3"
     volume_size = 50
   }

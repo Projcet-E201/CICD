@@ -19,6 +19,22 @@ all:
         10.0.1.12:
         10.0.1.65:
         10.0.1.100:
+      vars:
+        spring_profiles:
+          container1:
+            10.0.1.155: client1
+            10.0.1.204: client3
+            10.0.1.27: client5
+            10.0.1.12: client7
+            10.0.1.65: client9
+            10.0.1.100: client11
+          container2:
+            10.0.1.155: client2
+            10.0.1.204: client4
+            10.0.1.27: client6
+            10.0.1.12: client8
+            10.0.1.65: client10
+            10.0.1.100: client12
     kafka_server:
       hosts:
         10.0.1.69:

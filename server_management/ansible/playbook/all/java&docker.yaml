@@ -1,5 +1,5 @@
 # 플레이북에는 하나 이상의 플레이가 있을 수 있습니다.
-- name: Play 1 - Java OpenJDK 11 Install
+- name: 자바 11설치
   hosts: all # 이 플레이의 대상 호스트 (인벤토리 파일에서 정의됨)
   become: yes # 필요한 경우 권한을 상승시킵니다 (sudo로 권한 상승)
   tasks: # 이 플레이에 대해 실행할 작업 목록
@@ -16,7 +16,7 @@
       ansible.builtin.command:
         _raw_params: java --version
 
-- name: 플레이 2 - 원격 호스트에 Docker & Docker-compose 설치 및 구성
+- name: 원격 호스트에 Docker & Docker-compose 설치 및 구성
   hosts: all
   become: yes
   tasks:
@@ -59,22 +59,22 @@
         line: "ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375"
       become: yes
 
-    - name: Reload systemd configuration
+    - name: 도커 리부팅
       ansible.builtin.systemd:
         daemon_reload: yes
       become: yes
 
-    - name: Restart Docker service
+    - name: 도커 재시작
       ansible.builtin.service:
         name: docker
         state: restarted
       become: yes
 
-    - name: Get Docker Compose URL
+    - name: 도커 컴포즈 링크 가져오기
       ansible.builtin.shell: echo "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)"
       register: docker_compose_url
 
-    - name: Download and install docker-compose
+    - name: 도커 컴포즈 설치
       ansible.builtin.get_url:
         url: "{{ docker_compose_url.stdout }}"
         dest: /usr/local/bin/docker-compose
