@@ -1,8 +1,8 @@
 # 플레이북에는 하나 이상의 플레이가 있을 수 있습니다.
 - name: Play 1 - Java OpenJDK 11 Install
-  hosts: all                     # 이 플레이의 대상 호스트 (인벤토리 파일에서 정의됨)
-  become: yes                     # 필요한 경우 권한을 상승시킵니다 (sudo로 권한 상승)
-  tasks:                          # 이 플레이에 대해 실행할 작업 목록
+  hosts: all # 이 플레이의 대상 호스트 (인벤토리 파일에서 정의됨)
+  become: yes # 필요한 경우 권한을 상승시킵니다 (sudo로 권한 상승)
+  tasks: # 이 플레이에 대해 실행할 작업 목록
     - name: apt update
       apt:
         update_cache: yes
@@ -16,7 +16,7 @@
       shell:
         command: java -version
 
-- name: 플레이 2 - 원격 호스트에 Docker 설치 및 구성
+- name: 플레이 2 - 원격 호스트에 Docker & Docker-compose 설치 및 구성
   hosts: all
   become: yes
   tasks:
@@ -51,3 +51,31 @@
         name: docker
         state: started
         enabled: yes
+
+    - name: Update Docker service configuration file
+      ansible.builtin.lineinfile:
+        path: /lib/systemd/system/docker.service
+        regexp: "^ExecStart="
+        line: "ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375"
+      become: yes
+
+    - name: Reload systemd configuration
+      ansible.builtin.systemd:
+        daemon_reload: yes
+      become: yes
+
+    - name: Restart Docker service
+      ansible.builtin.service:
+        name: docker
+        state: restarted
+      become: yes
+
+    - name: Download and install docker-compose
+      ansible.builtin.get_url:
+        url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)"
+        dest: /usr/local/bin/docker-compose
+        mode: "0755"
+
+    - name: Check docker-compose version
+      ansible.builtin.command:
+        cmd: docker-compose --version
