@@ -3,12 +3,6 @@
   become: yes
 
   tasks:
-    - name: OpenJDK 설치
-      ansible.builtin.apt:
-        name: openjdk-11-jdk
-        state: present
-        update_cache: yes
-
     - name: Kafka 사용자 추가
       ansible.builtin.user:
         name: kafka
