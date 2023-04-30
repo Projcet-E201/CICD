@@ -8,9 +8,6 @@ all:
   # 모든 하위 그룹을 포함하는 그룹정의
   # 아래의 그룹들을 all의 하위그룹으로 포함한다.
   children:
-    main_server:
-      hosts: 43.201.55.255
-
     ansible_server:
       hosts:
         10.0.1.90:
