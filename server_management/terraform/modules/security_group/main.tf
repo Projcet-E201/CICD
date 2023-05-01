@@ -19,28 +19,6 @@ resource "aws_security_group_rule" "ssh_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
-# HTTP 접속 허용
-resource "aws_security_group_rule" "http_inbound" {
-  security_group_id = aws_security_group.this.id
-
-  type        = "ingress"
-  from_port   = 80
-  to_port     = 80
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
-
-# HTTPS 접속 허용
-resource "aws_security_group_rule" "https_inbound" {
-  security_group_id = aws_security_group.this.id
-
-  type        = "ingress"
-  from_port   = 443
-  to_port     = 443
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
-
 # jenkins 접속 허용
 resource "aws_security_group_rule" "jenkins_inbound" {
   security_group_id = aws_security_group.this.id

@@ -1,3 +1,8 @@
+### Ansible Ad hoc
+ansible all -i ./inventory/hosts.yaml -m ping
+
+
+### 전체 서버 배포
 # 자바 & 도커 설치
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/java\&docker.yaml
 
