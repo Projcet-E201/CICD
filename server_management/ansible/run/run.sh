@@ -37,3 +37,6 @@ ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/datagenerator.
 
 ### 카프카 서버
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/kafka_server/kafka.yaml
+
+
+### 개발 서버

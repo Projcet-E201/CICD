@@ -10,6 +10,13 @@
         name: docker
         state: present
 
+    # 기존 이미지 제거
+    - name: Remove existing Spring Boot Docker image
+      ansible.builtin.docker_image:
+        name: "{{ app_image }}"
+        state: absent
+      ignore_errors: yes
+
     # Docker 이미지를 끌어 오기
     - name: Pull Spring Boot Docker image
       ansible.builtin.docker_image:
