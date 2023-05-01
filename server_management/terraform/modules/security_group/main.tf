@@ -16,7 +16,7 @@ resource "aws_security_group_rule" "ssh_inbound" {
   from_port   = 22
   to_port     = 22
   protocol    = "tcp"
-  cidr_blocks = ["10.0.1.0/24", "43.201.55.255/32", "59.20.195.127/32"]
+  cidr_blocks = ["43.201.55.255/32", "59.20.195.127/32", "10.0.1.0/24"]
 }
 
 # jenkins 접속 허용
