@@ -12,13 +12,19 @@
       ansible.builtin.command:
         cmd: docker network create br-app
       when: "'br-app' not in br_app_network.stdout"
+
+    - name: Create Docker group
+      become: yes
+      group:
+        name: docker
+        state: present
     
     - name: Add current user to docker group
       ansible.builtin.user:
         name: "{{ ansible_user }}"
         group: docker
         append: yes
-        
+
     - name: Restart Docker
       ansible.builtin.systemd:
         name: docker

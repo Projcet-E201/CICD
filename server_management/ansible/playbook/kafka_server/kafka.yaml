@@ -3,43 +3,12 @@
   become: yes
 
   tasks:
-    - name: Kafka 사용자 추가
-      ansible.builtin.user:
-        name: kafka
-        system: yes
-        shell: /bin/false
+    - name: docker-compose yaml 복사
+      copy:
+        src: docker-compose.yml
+        dest: /opt/kafka/docker-compose.yml
 
-    - name: Kafka 설치 파일 다운로드
-      ansible.builtin.get_url:
-        url: https://downloads.apache.org/kafka/2.8.1/kafka_2.13-2.8.1.tgz
-        dest: /tmp/kafka.tgz
-
-    - name: Kafka 설치 디렉토리 생성
-      ansible.builtin.file:
-        path: /opt/kafka
-        state: directory
-
-    - name: Kafka 압축 해제
-      ansible.builtin.unarchive:
-        src: /tmp/kafka.tgz
-        dest: /opt/kafka
-        remote_src: yes
-        extra_opts: [--strip-components=1]
-
-    - name: 소유자 변경
-      ansible.builtin.file:
-        path: /opt/kafka
-        owner: kafka
-        group: kafka
-        recurse: yes
-
-    - name: 카프카 서비스 파일 추가
-      ansible.builtin.copy:
-        src: /path/to/your/kafka.service
-        dest: /etc/systemd/system/kafka.service
-
-    - name: 카프카 서비스 활성화 및 시작
-      ansible.builtin.systemd:
-        name: kafka
-        state: started
-        enabled: yes
+    - name: docker-compose 실행
+      command: docker-compose up -d
+      args:
+        chdir: /opt/kafka

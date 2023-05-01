@@ -25,7 +25,7 @@ ansible all -i ./inventory/hosts.yaml -m command -a "docker ps" -b
 # 파이썬 설치
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/python.yaml
 
-# 도커 네트워크 설치
+# 도커 추가설정
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/docker_init.yaml
 
 
