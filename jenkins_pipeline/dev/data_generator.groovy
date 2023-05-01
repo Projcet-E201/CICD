@@ -37,7 +37,6 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'sudo usermod -aG docker jenkins' // add jenkins user to docker group
                 script {
                     docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
                 }

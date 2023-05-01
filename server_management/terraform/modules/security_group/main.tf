@@ -16,7 +16,7 @@ resource "aws_security_group_rule" "ssh_inbound" {
   from_port   = 22
   to_port     = 22
   protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
+  cidr_blocks = ["10.0.1.0/24", "43.201.55.255/32"]
 }
 
 # jenkins 접속 허용
@@ -52,18 +52,7 @@ resource "aws_security_group_rule" "docker_api_inbound" {
   from_port   = 2375
   to_port     = 2375
   protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"] # Adjust this to restrict access if needed
-}
-
-# Allow all outbound traffic
-resource "aws_security_group_rule" "all_outbound" {
-  security_group_id = aws_security_group.this.id
-
-  type        = "egress"
-  from_port   = 0
-  to_port     = 0
-  protocol    = "-1"
-  cidr_blocks = ["0.0.0.0/0"]
+  cidr_blocks = ["43.201.55.255/32"] # Adjust this to restrict access if needed
 }
 
 # ping 테스트를 위한 icmp 허용
@@ -75,6 +64,17 @@ resource "aws_security_group_rule" "icmp_inbound" {
   to_port     = -1
   protocol    = "icmp"
   cidr_blocks = ["10.0.1.0/24"]
+}
+
+# Allow all outbound traffic
+resource "aws_security_group_rule" "all_outbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "egress"
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
 }
 
 
