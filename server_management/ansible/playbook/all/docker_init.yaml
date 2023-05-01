@@ -25,6 +25,12 @@
         group: docker
         append: yes
 
+    - name: Modify Docker socket permissions
+      become: yes
+      file:
+        path: /var/run/docker.sock
+        mode: '0666'
+
     - name: Restart Docker
       ansible.builtin.systemd:
         name: docker
