@@ -10,6 +10,20 @@
         name: docker
         state: present
 
+    # 컨테이너 제거
+    - name: Remove existing container 1 if it's running
+      ansible.builtin.docker_container:
+        name: spring_boot_app_container1
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove existing container 2 if it's running
+      ansible.builtin.docker_container:
+        name: spring_boot_app_container2
+        state: absent
+      ignore_errors: yes
+
+
     # 기존 이미지 제거
     - name: Remove existing Spring Boot Docker image
       ansible.builtin.docker_image:
