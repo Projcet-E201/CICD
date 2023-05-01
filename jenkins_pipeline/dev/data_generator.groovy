@@ -56,6 +56,8 @@ pipeline {
 
         stage('Deploy with Ansible') {
             steps {
+                sh 'sudo chmod 644 /home/ubuntu/CICD/server_management/ansible/playbook/data_server/datagenerator.yaml'
+            
                 sh "ansible-playbook -i ${env.ANSIBLE_INVENTORY_PATH}/hosts.yaml ${env.ANSIBLE_PLAYBOOK_PATH}/data_server/datagenerator.yaml"
             }
         }

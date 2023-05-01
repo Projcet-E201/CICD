@@ -5,8 +5,8 @@
   tasks:
     - name: docker-compose yaml 복사
       copy:
-        src: docker-compose.yml
-        dest: /opt/kafka/docker-compose.yml
+        src: docker-compose.yaml
+        dest: /opt/kafka/docker-compose.yaml
 
     - name: docker-compose 실행
       command: docker-compose up -d
