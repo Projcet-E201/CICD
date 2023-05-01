@@ -1,0 +1,16 @@
+all:
+  # 인벤토리의 모든 호스트에 적용되는 그룹 수준 변수 정의
+  # 이 경우 모든 호스트에 대해 변수를 설정한다.
+  vars:
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: "/etc/ansible/K8E201T.pem"
+
+  # 모든 하위 그룹을 포함하는 그룹정의
+  # 아래의 그룹들을 all의 하위그룹으로 포함한다.
+  children:
+    develop_server:
+      hosts:
+        43.201.55.255:
+    deploy_server:
+      hosts:
+        3.36.77.155:
