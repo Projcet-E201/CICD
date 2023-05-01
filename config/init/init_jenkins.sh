@@ -38,3 +38,6 @@ sudo service jenkins restart
 
 # 키 등록에러(15숫자영어에는 본인 값 넣을 것!)
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
+
+
+# Semse201!
