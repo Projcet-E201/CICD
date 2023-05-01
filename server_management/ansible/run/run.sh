@@ -1,3 +1,7 @@
+### SSH 관련 
+scp semsekey.pem semsekey.pem ubuntu@43.201.141.125 /ansible/etc/semsekey.pem
+
+
 ### Ansible Ad hoc
 ansible all -i ./inventory/hosts.yaml -m ping
 
