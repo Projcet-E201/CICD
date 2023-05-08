@@ -18,7 +18,7 @@ services:
         target: /data
         read_only: false
     networks:
-      - br_app
+      - br-app
 
   # # Nginx 대시보드
   # nginx-manager:
@@ -40,8 +40,8 @@ services:
   #       target: /etc/letsencrypt
   #       read_only: false
   #   networks:
-  #     - br_app
+  #     - br-app
 
 networks:
-  br_app:
+  br-app:
     external: true

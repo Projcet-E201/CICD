@@ -1,2 +1,2 @@
 # 앱 네트워크
-docker network create br-app
+docker network create br_app
