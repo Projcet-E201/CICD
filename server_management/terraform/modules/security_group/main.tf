@@ -30,6 +30,18 @@ resource "aws_security_group_rule" "jenkins_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# portainer 접속 허용
+resource "aws_security_group_rule" "portainer_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 8000
+  to_port     = 9000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+
 
 # kafka 인스턴스에 대한 인바운드 규칙
 # 9092에 대해서 tcp 트래픽 허용한다.
