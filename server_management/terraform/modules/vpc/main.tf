@@ -63,47 +63,6 @@ resource "aws_route_table_association" "this" {
 }
 
 
-# Customer Gateway (외부서버와 통신하기 위한 ip)
-resource "aws_customer_gateway" "this" {
-  bgp_asn    = 65000
-  ip_address = "43.201.55.255"
-  type       = "ipsec.1"
-
-  tags = {
-    Name = "ssafy-semse-customer-gateway"
-  }
-}
-
-# VPN Gateway (외부서버와 통신하기위한 GW)
-resource "aws_vpn_gateway" "this" {
-  vpc_id = aws_vpc.this.id
-
-  tags = {
-    Name = "ssafy-semse-vpn-gateway"
-  }
-}
-
-# VPN Connection (게이트웨이 연결)
-resource "aws_vpn_connection" "this" {
-  customer_gateway_id = aws_customer_gateway.this.id
-  vpn_gateway_id      = aws_vpn_gateway.this.id
-  type                = "ipsec.1"
-  static_routes_only  = true
-
-  tags = {
-    Name = "ssafy-semse-vpn-connection"
-  }
-}
-
-# VPN Connection Route
-resource "aws_vpn_connection_route" "this" {
-  destination_cidr_block = "10.0.0.0/16"
-  vpn_connection_id      = aws_vpn_connection.this.id
-}
-
-
-
-
 # 출력변수 
 # 다른 구성이나 모듈에서 사용할 수 있는 출력 변수로 내보낸다.
 output "vpc_id" {
