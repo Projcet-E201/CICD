@@ -1,17 +1,17 @@
-- name: Create Docker network br-app
+- name: Create Docker network br_app
   hosts: all
   become: yes
   tasks:
-    - name: Check if br-app network exists
+    - name: Check if br_app network exists
       ansible.builtin.command:
-        cmd: docker network ls --filter name=br-app
+        cmd: docker network ls --filter name=br_app
       register: br_app_network
       changed_when: false
 
-    - name: Create br-app network
+    - name: Create br_app network
       ansible.builtin.command:
-        cmd: docker network create br-app
-      when: "'br-app' not in br_app_network.stdout"
+        cmd: docker network create br_app
+      when: "'br_app' not in br_app_network.stdout"
 
     - name: Create Docker group
       become: yes
