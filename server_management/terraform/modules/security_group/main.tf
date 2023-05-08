@@ -97,7 +97,7 @@ resource "aws_security_group_rule" "docker_api_inbound" {
   from_port   = 2375
   to_port     = 2375
   protocol    = "tcp"
-  cidr_blocks = ["10.0.1.0/24", "43.201.55.255", "3.36.77.155"]
+  cidr_blocks = ["10.0.1.0/24", "43.201.55.255/32", "3.36.77.155/32"]
 }
 
 
