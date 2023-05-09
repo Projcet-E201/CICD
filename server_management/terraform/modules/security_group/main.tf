@@ -30,6 +30,17 @@ resource "aws_security_group_rule" "jenkins_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# influxdb 접속 허용
+resource "aws_security_group_rule" "jenkins_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 8086
+  to_port     = 8086
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
 # portainer 접속 허용
 resource "aws_security_group_rule" "portainer_inbound" {
   security_group_id = aws_security_group.this.id
