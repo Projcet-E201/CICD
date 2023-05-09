@@ -1,0 +1,18 @@
+version: "3"
+services:
+  dev-back-blue:
+    container_name: dataDivision
+    image: scofe/data_division:latest
+    ports:
+      - "8090:8090"
+      - "9997:9997"
+      - "9998:9998"
+      - "9999:9999"
+    environment:
+      PROFILE: "prod"
+    networks:
+      - br_app
+
+networks:
+  br_app:
+    external: true

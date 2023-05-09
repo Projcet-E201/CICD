@@ -103,7 +103,7 @@
       group:
         name: docker
         state: present
-    
+
     - name: 현재 유저를 도커 그룹에 추가
       ansible.builtin.user:
         name: "{{ ansible_user }}"
@@ -114,7 +114,7 @@
       become: yes
       file:
         path: /var/run/docker.sock
-        mode: '0666'
+        mode: "0666"
 
     - name: 도커 재실행
       ansible.builtin.systemd:
@@ -127,4 +127,9 @@
     - name: Install python3-pip
       ansible.builtin.package:
         name: python3-pip
+        state: present
+
+    - name: Install Docker SDK for Python
+      ansible.builtin.pip:
+        name: docker
         state: present

@@ -1,0 +1,17 @@
+- name: data_division 배포
+  hosts: main_server1
+  vars:
+    compose_file: "./api/docker-compose.yaml"
+  tasks:
+    - name: 도커 실행중인지 확인
+      service:
+        name: docker
+        state: started
+
+    - name: api 배포
+      docker_compose:
+        project_src: "{{ compose_file }}"
+        state: present
+        pull: yes
+        remove_orphans: yes
+        restarted: yes

@@ -1,0 +1,17 @@
+- name: data_division 배포
+  hosts: main_server1
+  vars:
+    compose_file: "./data_division/docker-compose.yaml"
+  tasks:
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+
+    - name: data_division 배포
+      docker_compose:
+        project_src: "{{ compose_file }}"
+        state: present
+        pull: yes
+        remove_orphans: yes
+        restarted: yes

@@ -35,4 +35,5 @@ ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/kafka_server/kafka.yaml
 
 
-### 개발 서버
+### 메인 서버
+ansible-playbook -i ./inventory/hosts2.yaml ./playbook/main_server/data_division_playbook.yaml

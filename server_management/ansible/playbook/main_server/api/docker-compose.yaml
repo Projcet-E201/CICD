@@ -1,0 +1,15 @@
+version: "3"
+services:
+  dev-back-blue:
+    container_name: api
+    image: scofe/api:latest
+    environment:
+      PROFILE: "prod"
+    ports:
+      - "8091:8091"
+    networks:
+      - br_app
+
+networks:
+  br_app:
+    external: true
