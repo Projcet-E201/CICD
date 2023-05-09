@@ -1,8 +1,18 @@
 - name: data_division 배포
   hosts: main_server1
   vars:
-    compose_file: "/home/ubuntu/CICD/server_management/ansible/playbook/main_server/data_division"
+    compose_file: "./data_division"
   tasks:
+    - name: Create data_division directory
+      file:
+        path: ~/data_division
+        state: directory
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: "{{ compose_file }}/docker-compose.yml"
+        dest: ~/data_division/docker-compose.yml
+
     - name: Ensure Docker is running
       service:
         name: docker

@@ -1,8 +1,18 @@
-- name: data_division 배포
+- name: api 배포
   hosts: main_server1
   vars:
-    compose_file: "/home/ubuntu/CICD/server_management/ansible/playbook/main_server/api"
+    compose_file: "./data_api"
   tasks:
+    - name: Create data_api directory
+      file:
+        path: ~/data_api
+        state: directory
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: "{{ compose_file }}/docker-compose.yml"
+        dest: ~/data_api/docker-compose.yml
+
     - name: 도커 실행중인지 확인
       service:
         name: docker
