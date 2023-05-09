@@ -5,7 +5,9 @@ services:
     image: grafana/grafana
     container_name: grafana
     ports:
-      - "3000:3000"
+      - "7000:7000"
+    environment:
+      - GF_SERVER_HTTP_PORT=7000
     volumes:
       - ./grafana/volume:/var/lib/grafana
     networks:
