@@ -31,7 +31,7 @@ resource "aws_security_group_rule" "jenkins_inbound" {
 }
 
 # influxdb 접속 허용
-resource "aws_security_group_rule" "jenkins_inbound" {
+resource "aws_security_group_rule" "influxdb_inbound" {
   security_group_id = aws_security_group.this.id
 
   type        = "ingress"
