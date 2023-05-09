@@ -8,9 +8,9 @@ all:
   # 모든 하위 그룹을 포함하는 그룹정의
   # 아래의 그룹들을 all의 하위그룹으로 포함한다.
   children:
-    develop_server:
+    main_server1:
       hosts:
         43.201.55.255:
-    deploy_server:
+    main_server2:
       hosts:
         3.36.77.155:

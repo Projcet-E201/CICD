@@ -1,0 +1,23 @@
+- name: 리액트 앱 빌드
+  hosts: main_server1
+  vars:
+    container_name: "scofe/react"
+    image_tag: "latest"
+    docker_network: br_app
+  tasks:
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+
+    - name: Deploy container
+      docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_tag }}"
+        state: started
+        recreate: yes
+        pull: yes
+        published_ports:
+          - 3000:3000
+        networks:
+          - name: "{{ docker_network }}"
