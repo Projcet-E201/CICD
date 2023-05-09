@@ -24,14 +24,14 @@ all:
           container1:
             10.0.1.25: client1
             10.0.1.182: client3
-            10.0.1.212: client5
+            10.0.1.154: client5
             10.0.1.218: client7
             10.0.1.77: client9
             10.0.1.109: client11
           container2:
             10.0.1.25: client2
             10.0.1.182: client4
-            10.0.1.212: client6
+            10.0.1.154: client6
             10.0.1.218: client8
             10.0.1.77: client10
             10.0.1.109: client12
