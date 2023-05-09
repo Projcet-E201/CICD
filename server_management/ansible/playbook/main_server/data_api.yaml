@@ -1,7 +1,7 @@
 - name: data_division 배포
   hosts: main_server1
   vars:
-    compose_file: "./api"
+    compose_file: "/home/ubuntu/CICD/server_management/ansible/playbook/main_server/api"
   tasks:
     - name: 도커 실행중인지 확인
       service:

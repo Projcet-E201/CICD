@@ -1,7 +1,7 @@
 - name: data_division 배포
   hosts: main_server1
   vars:
-    compose_file: "./data_division"
+    compose_file: "/home/ubuntu/CICD/server_management/ansible/playbook/main_server/data_division"
   tasks:
     - name: Ensure Docker is running
       service:
