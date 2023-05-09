@@ -10,8 +10,8 @@
 
     - name: Copy docker-compose.yml
       copy:
-        src: "{{ compose_file }}/docker-compose.yml"
-        dest: ~/data_division/docker-compose.yml
+        src: "{{ compose_file }}/docker-compose.yaml"
+        dest: ~/data_division/docker-compose.yaml
 
     - name: Ensure Docker is running
       service:

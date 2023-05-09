@@ -10,8 +10,8 @@
 
     - name: Copy docker-compose.yml
       copy:
-        src: "{{ compose_file }}/docker-compose.yml"
-        dest: ~/data_api/docker-compose.yml
+        src: "{{ compose_file }}/docker-compose.yaml"
+        dest: ~/data_api/docker-compose.yaml
 
     - name: 도커 실행중인지 확인
       service:
