@@ -20,7 +20,7 @@
 
     - name: data_division 배포
       docker_compose:
-        project_src: "~/data_division/docker-compose.yaml"
+        project_src: "~/data_division"
         state: present
         pull: yes
         remove_orphans: yes
