@@ -1,7 +1,7 @@
 - name: 리액트 앱 빌드
   hosts: main_server1
   vars:
-    container_name: "scofe/react"
+    container_name: "react"
     image_tag: "scofe/react:latest"
     docker_network: br_app
   tasks:
