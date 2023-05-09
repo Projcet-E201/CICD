@@ -11,7 +11,7 @@
 
     - name: Copy Docker Compose File
       copy:
-        src: ./influxdb/to/docker-compose.yaml
+        src: ./influxdb/docker-compose.yaml
         dest: /home/ubuntu/influxdb/docker-compose.yaml
 
     - name: Start InfluxDB with Docker Compose

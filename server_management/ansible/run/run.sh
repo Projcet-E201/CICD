@@ -35,7 +35,7 @@ ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/docker_init.yaml
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/datagenerator.yaml
 
 # 데이터 생성서버 인플럭스 설치
-ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/datagenerator.yaml
+ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_influx.yaml
 
 
 ### 카프카 서버
