@@ -3,6 +3,8 @@ scp semsekey.pem semsekey.pem ubuntu@43.201.141.125 /ansible/etc/semsekey.pem
 chmod 600 semsekey.pem
 sudo chmod 777 /etc/ansible
 
+scp semsekey.pem semsekey.pem ubuntu@52.78.197.47 /ansible/etc/semsekey.pem
+
 ### Ansible Ad hoc
 # 핑 확인
 ansible all -i ./inventory/hosts.yaml -m ping

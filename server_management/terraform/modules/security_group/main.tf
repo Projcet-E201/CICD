@@ -88,7 +88,7 @@ resource "aws_security_group_rule" "zookeeper_inbound_2888" {
   cidr_blocks = ["10.0.1.0/24", "43.201.55.255/32"]
 }
 
-# 리더 선출
+# 카프카 리더 선출에 사용되는 포트
 resource "aws_security_group_rule" "zookeeper_inbound_3888" {
   security_group_id = aws_security_group.this.id
 

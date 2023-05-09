@@ -10,14 +10,6 @@ resource "aws_vpc" "this" {
   }
 }
 
-# Route 53 호스팅 영역 및 인스턴스에 대한 A 레코드 생성 (이 코드를 루트 모듈에 추가하세요)
-resource "aws_route53_zone" "example" {
-  name = "semse.info"
-
-  vpc {
-    vpc_id = aws_vpc.this.id
-  }
-}
 
 # Subnet
 # CIDR 블록 "10.0.1.0/24"는 10.0.1.0에서 10.0.1.255까지의 IP 주소 범위를 나타냅니다.
