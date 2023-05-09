@@ -1,0 +1,20 @@
+- name: Deploy InfluxDB on Data Instance Servers
+  hosts: data_instance_server
+  become: yes
+  tasks:
+    - name: Ensure influxdb directory exists
+      file:
+        path: /home/ubuntu/influxdb
+        state: directory
+        mode: '0755'
+
+
+    - name: Copy Docker Compose File
+      copy:
+        src: ./influxdb/to/docker-compose.yaml
+        dest: /home/ubuntu/influxdb/docker-compose.yaml
+
+    - name: Start InfluxDB with Docker Compose
+      command: docker-compose up -d
+      args:
+        chdir: /home/ubuntu/influxdb/ #change directory

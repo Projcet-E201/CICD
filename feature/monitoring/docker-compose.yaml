@@ -24,10 +24,7 @@ services:
       - ./prometheus/volume:/prometheus
     networks:
       - br_app
-
-volumes:
-  grafana-data:
-
+      
 networks:
   br_app:
     external: true

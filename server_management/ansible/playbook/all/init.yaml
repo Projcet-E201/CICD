@@ -83,3 +83,48 @@
     - name: Check docker-compose version
       ansible.builtin.command:
         cmd: docker-compose --version
+  - name: 도커 추가 설정 진행
+    hosts: all
+    become: yes
+    tasks:
+      - name: 도커 네트워크가 존재하는지 확인
+        ansible.builtin.command:
+          cmd: docker network ls --filter name=br_app
+        register: br_app_network
+        changed_when: false
+
+      - name: 도커 네트워크 생성
+        ansible.builtin.command:
+          cmd: docker network create br_app
+        when: "'br_app' not in br_app_network.stdout"
+
+      - name: 도커 그룹 생성
+        become: yes
+        group:
+          name: docker
+          state: present
+      
+      - name: 현재 유저를 도커 그룹에 추가
+        ansible.builtin.user:
+          name: "{{ ansible_user }}"
+          group: docker
+          append: yes
+
+      - name: 도커소켓 권한 수정
+        become: yes
+        file:
+          path: /var/run/docker.sock
+          mode: '0666'
+
+      - name: 도커 재실행
+        ansible.builtin.systemd:
+          name: docker
+          state: restarted
+  - name: 파이썬3 설치
+    hosts: all
+    become: yes
+    tasks:
+      - name: Install python3-pip
+        ansible.builtin.package:
+          name: python3-pip
+          state: present

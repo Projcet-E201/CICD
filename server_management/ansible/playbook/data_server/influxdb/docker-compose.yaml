@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  influxdb:
+    image: influxdb:2.7.0
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./config.yml:/etc/influxdb2/config.yml
+      - ./influxdb-data:/var/lib/influxdb2
+    networks:
+      - br_app
+    cpu_quota: 25000
+    cpu_period: 100000
+
+
+networks:
+  br_app:
+    external: true

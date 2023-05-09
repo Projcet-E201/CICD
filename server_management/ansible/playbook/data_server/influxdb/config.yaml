@@ -1,0 +1,2 @@
+http:
+  max_write_request_body_size: 5000
