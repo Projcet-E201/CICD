@@ -2,7 +2,7 @@
   hosts: main_server1
   vars:
     compose_file: "./data_division"
-    container_name: "docker_division"
+    container_name: "division"
     image_name: "scofe/data_division"
   tasks:
     - name: Create data_division directory
