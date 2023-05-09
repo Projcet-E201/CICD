@@ -2,6 +2,8 @@
   hosts: main_server1
   vars:
     compose_file: "./data_division"
+    container_name: "docker_division"
+    image_name: "scofe/data_division"
   tasks:
     - name: Create data_division directory
       file:
@@ -12,6 +14,14 @@
       copy:
         src: "{{ compose_file }}/docker-compose.yaml"
         dest: ~/data_division/docker-compose.yaml
+
+    - name: Stop and remove existing Docker container
+      docker_container:
+        name: "{{ container_name }}"
+        state: absent
+        force_kill: yes
+      register: stop_result
+      ignore_errors: yes
 
     - name: Ensure Docker is running
       service:
