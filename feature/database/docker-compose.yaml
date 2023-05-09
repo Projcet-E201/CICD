@@ -10,6 +10,10 @@ services:
       - ./config.yml:/etc/influxdb2/config.yml
     networks:
       - br_app
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
 
 
 networks:
