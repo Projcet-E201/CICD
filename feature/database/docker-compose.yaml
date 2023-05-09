@@ -8,12 +8,11 @@ services:
       - "8086:8086"
     volumes:
       - ./config.yml:/etc/influxdb2/config.yml
+      - ./influxdb-data:/var/lib/influxdb2
     networks:
       - br_app
-    deploy:
-      resources:
-        limits:
-          cpus: '0.25'
+    cpu_quota: 25000
+    cpu_period: 100000
 
 
 networks:
