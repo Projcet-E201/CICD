@@ -2,7 +2,7 @@
   hosts: main_server1
   vars:
     container_name: "scofe/react"
-    image_tag: "latest"
+    image_tag: "scofe/react:latest"
     docker_network: br_app
   tasks:
     - name: Ensure Docker is running
