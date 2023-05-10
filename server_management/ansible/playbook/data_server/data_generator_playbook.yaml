@@ -5,6 +5,32 @@
     app_image: scofe/data_generator
 
   tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - git
+          - docker.io
+        state: present
+
+    - name: Clone the repository
+      git:
+        repo: 'https://github.com/Projcet-E201/DataDivision.git'
+        dest: '~/'
+        clone: yes
+        update: yes
+
+    - name: Copy application-secret.yaml
+      copy:
+        src: '~/secret/application-secret.yaml'
+        dest: '~/DataDivision/src/main/resources'
+        owner: 'root'
+        group: 'root'
+        mode: '0644'
+
+    - name: Build Docker image
+      command: docker build -t {{ app_image }} ~/DataDivision
+
+
     # 컨테이너 제거
     - name: Remove existing container 1 if it's running
       ansible.builtin.docker_container:
@@ -17,19 +43,6 @@
         name: spring_boot_app_container2
         state: absent
       ignore_errors: yes
-
-    # 기존 이미지 제거
-    - name: Remove existing Spring Boot Docker image
-      ansible.builtin.docker_image:
-        name: "{{ app_image }}"
-        state: absent
-      ignore_errors: yes
-
-    # Docker 이미지를 끌어 오기
-    - name: Pull Spring Boot Docker image
-      ansible.builtin.docker_image:
-        name: "{{ app_image }}"
-        source: pull
 
     - name: Deploy container 1
       include_tasks: deploy_container.yml
