@@ -25,7 +25,7 @@ ansible all -i ./inventory/hosts.yaml -m command -a "docker ps" -b
 
 ### 데이터 서버
 # 데이터 생성서버 배포
-ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/datagenerator.yaml
+ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_playbook.yaml
 # 데이터 생성서버 인플럭스 설치
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_influx.yaml
 # 데이터 생성서버 인플럭스 설치

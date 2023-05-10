@@ -9,7 +9,6 @@
       apt:
         name:
           - git
-          - docker.io
         state: present
 
     - name: Clone the repository
