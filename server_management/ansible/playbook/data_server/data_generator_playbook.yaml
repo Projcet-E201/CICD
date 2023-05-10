@@ -23,6 +23,16 @@
       command:
         cmd: cp /home/ubuntu/secret/application-secret.yaml /home/ubuntu/DataGenerator/src/main/resources
 
+    - name: Grant execution permissions to Gradle wrapper
+      ansible.builtin.file:
+        path: /home/ubuntu/DataGenerator/gradlew
+        mode: '0755'
+
+    - name: Build the project with Gradle
+      command: ./gradlew clean build
+      args:
+        chdir: /home/ubuntu/DataGenerator
+
 
     - name: Build Docker image
       command: docker build -t {{ app_image }} /home/ubuntu/DataGenerator
