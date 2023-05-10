@@ -1,6 +1,6 @@
 ### SSH 관련 
-scp semsekey.pem semsekey.pem ubuntu@43.201.141.125 /ansible/etc/semsekey.pem
-chmod 600 semsekey.pem
+sudo scp semsekey2.pem semsekey2.pem ubuntu@13.209.213.175:/etc/ansible/semsekey2.pem
+chmod 600 semsekey2.pem
 sudo chmod 777 /etc/ansible
 
 ### Ansible Ad hoc
