@@ -15,7 +15,7 @@
     - name: Clone the repository
       git:
         repo: 'https://scofe97:{{ github_token }}@github.com/Projcet-E201/DataGenerator.git' 
-        dest: '/home/ubuntu/DataDivision'
+        dest: '/home/ubuntu/DataGenerator'
         clone: yes
         update: yes
 
