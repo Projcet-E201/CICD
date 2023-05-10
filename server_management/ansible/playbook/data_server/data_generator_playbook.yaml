@@ -21,8 +21,8 @@
 
     - name: Copy application-secret.yaml
       copy:
-        src: '~/secret/application-secret.yaml'
-        dest: '~/DataDivision/src/main/resources'
+        src: '/home/ubuntu/secret/application-secret.yaml'
+        dest: '/home/ubuntu/DataDivision/src/main/resources'
         owner: 'root'
         group: 'root'
         mode: '0644'
