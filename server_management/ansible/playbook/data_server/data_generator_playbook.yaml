@@ -14,7 +14,7 @@
     - name: Clone the repository
       git:
         repo: 'https://github.com/Projcet-E201/DataDivision.git'
-        dest: '~/'
+        dest: '~/DataDivision'
         clone: yes
         update: yes
 
