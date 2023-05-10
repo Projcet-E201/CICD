@@ -3,12 +3,6 @@
   hosts: all # 이 플레이의 대상 호스트 (인벤토리 파일에서 정의됨)
   become: yes # 필요한 경우 권한을 상승시킵니다 (sudo로 권한 상승)
   tasks: # 이 플레이에 대해 실행할 작업 목록
-    - name: Install python3-pip
-      ansible.builtin.package:
-        name: python3-pip
-        state: present
-
-
     - name: apt update
       apt:
         update_cache: yes
@@ -133,6 +127,11 @@
   hosts: all
   become: yes
   tasks:
+    - name: Install python3-pip
+      ansible.builtin.package:
+        name: python3-pip
+        state: present
+
     - name: 도커 컴포즈 설치
       ansible.builtin.pip:
         name: docker
