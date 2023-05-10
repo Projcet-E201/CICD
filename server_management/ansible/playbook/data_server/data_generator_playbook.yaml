@@ -18,6 +18,7 @@
         dest: '/home/ubuntu/DataGenerator'
         clone: yes
         update: yes
+        force: yes
 
     - name: Copy application-secret.yaml on the remote host
       command:
