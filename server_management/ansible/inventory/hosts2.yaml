@@ -10,7 +10,7 @@ all:
   children:
     main_server1:
       hosts:
-        43.201.55.255:
+        3.36.67.11:
     main_server2:
       hosts:
-        3.36.77.155:
+        3.36.125.106:

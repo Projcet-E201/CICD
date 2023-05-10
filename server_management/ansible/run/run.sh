@@ -17,6 +17,7 @@ curl -s http://169.254.169.254/latest/meta-data/local-ipv4
 
 # 자바 & 도커 & 환경설정
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/init.yaml
+ansible-playbook -i ./inventory/hosts2.yaml ./playbook/all/init.yaml
 # 도커 정상설치 되었는지 확인
 ansible all -i ./inventory/hosts.yaml -m command -a "docker --version" -b
 # 도커 컨테이너 확인
