@@ -13,36 +13,36 @@ all:
         10.0.1.244:
     data_instance_server:
       hosts:
-        10.0.1.25:
+        10.0.1.178:
           influxdb_token: "Q3i5GKnhvBbCaR5lBafqs7CPVskA_DB7muR3zPF4uw8xQm8J6hOkFAgojbHlFyLqVGNRVD-4qQiVYSahhu_mwA=="
-        10.0.1.182:
+        10.0.1.168:
           influxdb_token: "8WBHSkjwg3GWpJWJKOFIpdBlBCxEyss5Hy4e5POJaw4M2xXClLJgS526jt8Wr1PeVqDozm_-WMPgT8mJBOUtWQ=="
-        10.0.1.154:
+        10.0.1.65:
           influxdb_token: "MNPgnZ3WLMDw9dUL-Xf_A5dnStPRAXQkjjudjfw5pVSIxZepMOi1Pymyv8uaBsrwEUmPJ_m2E4JMpgXcssEtyg=="
-        10.0.1.218:
+        10.0.1.189:
           influxdb_token: "tbLgwVvqgfqcEzNLgFGEc2p8GUAFNai2EIxB2dnFWzguciXbOkXQLjwo2TyjebDQ0h69NafKHsrtlcntNISLjw=="
-        10.0.1.77:
+        10.0.1.51:
           influxdb_token: "jf0pGQqQWRWttxEXoDjd4G_BMi0rh_9ePreMRoxMflEibF9KqXTztIP7HjHoPo9nLEBWyR71N_aX_H32GOoHBg=="
-        10.0.1.109:
+        10.0.1.80:
           influxdb_token: "ys_llndABAtTx51FgN5xTKnE4_wrlcbqbtgXWqk-Rf_jVHn-tjPYbN4e3gG5WI7a65z2qNoXJQuzPNDjzsfbBg=="
       vars:
         spring_profiles:
           container1:
-            10.0.1.25: client1
-            10.0.1.182: client3
-            10.0.1.154: client5
-            10.0.1.218: client7
-            10.0.1.77: client9
-            10.0.1.109: client11
+            10.0.1.178: client1
+            10.0.1.168: client3
+            10.0.1.65: client5
+            10.0.1.189: client7
+            10.0.1.51: client9
+            10.0.1.80: client11
           container2:
-            10.0.1.25: client2
-            10.0.1.182: client4
-            10.0.1.154: client6
-            10.0.1.218: client8
-            10.0.1.77: client10
-            10.0.1.109: client12
+            10.0.1.178: client2
+            10.0.1.168: client4
+            10.0.1.65: client6
+            10.0.1.189: client8
+            10.0.1.51: client10
+            10.0.1.80: client12
     kafka_server:
       hosts:
-        10.0.1.11:
-        10.0.1.211:
-        10.0.1.86:
+        10.0.1.226:
+        10.0.1.225:
+        10.0.1.13:
