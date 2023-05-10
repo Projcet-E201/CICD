@@ -20,7 +20,7 @@ services:
     networks:
       - br_app
 
-  Nginx 대시보드
+  # Nginx 대시보드
   nginx-manager:
     image: "jc21/nginx-proxy-manager:$NGINX_MANAGER_VERSION"
     restart: unless-stopped
