@@ -52,6 +52,7 @@ resource "aws_security_group_rule" "portainer_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+
 # 카프카 인바운드 테스트 
 resource "aws_security_group_rule" "kafka_text_inbound" {
   security_group_id = aws_security_group.this.id
@@ -63,18 +64,6 @@ resource "aws_security_group_rule" "kafka_text_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
-# kafka 인스턴스에 대한 인바운드 규칙
-# 9092에 대해서 tcp 트래픽 허용한다.
-resource "aws_security_group_rule" "kafka_inbound" {
-  security_group_id = aws_security_group.this.id
-
-  type        = "ingress"
-  from_port   = 9092
-  to_port     = 9092
-  protocol    = "tcp"
-  cidr_blocks = ["10.0.1.0/24", "43.201.55.255/32"]
-}
-
 # kafka client와 통신
 resource "aws_security_group_rule" "zookeeper_inbound_2181" {
   security_group_id = aws_security_group.this.id
@@ -83,7 +72,7 @@ resource "aws_security_group_rule" "zookeeper_inbound_2181" {
   from_port = 2181
   to_port = 2181
   protocol="tcp"
-  cidr_blocks = ["10.0.1.0/24", "43.201.55.255/32"]
+  cidr_blocks = ["0.0.0.0/0"]
 }
 
 # zookeeper간 통신
@@ -94,7 +83,7 @@ resource "aws_security_group_rule" "zookeeper_inbound_2888" {
   from_port = 2888
   to_port = 2888
   protocol="tcp"
-  cidr_blocks = ["10.0.1.0/24", "43.201.55.255/32"]
+  cidr_blocks = ["0.0.0.0/0"]
 }
 
 # 카프카 리더 선출에 사용되는 포트
@@ -105,7 +94,7 @@ resource "aws_security_group_rule" "zookeeper_inbound_3888" {
   from_port = 3888
   to_port = 3888
   protocol="tcp"
-  cidr_blocks = ["10.0.1.0/24", "43.201.55.255/32"]
+  cidr_blocks = ["0.0.0.0/0"]
 }
 
 # 도커 API (Portainer)
