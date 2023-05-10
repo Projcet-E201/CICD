@@ -1,0 +1,8 @@
+- name: Remove /home/ubuntu/DataGenerator directory
+  hosts: data_instance_server
+  become: yes
+  tasks:
+    - name: Ensure directory does not exist
+      ansible.builtin.file:
+        path: /home/ubuntu/DataGenerator
+        state: absent
