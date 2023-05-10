@@ -83,6 +83,7 @@
     - name: Check docker-compose version
       ansible.builtin.command:
         cmd: docker-compose --version
+
 - name: 도커 추가 설정 진행
   hosts: all
   become: yes
@@ -120,6 +121,7 @@
       ansible.builtin.systemd:
         name: docker
         state: restarted
+        
 - name: 파이썬3 설치
   hosts: all
   become: yes

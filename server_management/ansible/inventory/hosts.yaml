@@ -14,11 +14,17 @@ all:
     data_instance_server:
       hosts:
         10.0.1.25:
+          influxdb_token: "Q3i5GKnhvBbCaR5lBafqs7CPVskA_DB7muR3zPF4uw8xQm8J6hOkFAgojbHlFyLqVGNRVD-4qQiVYSahhu_mwA=="
         10.0.1.182:
+          influxdb_token: "8WBHSkjwg3GWpJWJKOFIpdBlBCxEyss5Hy4e5POJaw4M2xXClLJgS526jt8Wr1PeVqDozm_-WMPgT8mJBOUtWQ=="
         10.0.1.154:
+          influxdb_token: "MNPgnZ3WLMDw9dUL-Xf_A5dnStPRAXQkjjudjfw5pVSIxZepMOi1Pymyv8uaBsrwEUmPJ_m2E4JMpgXcssEtyg=="
         10.0.1.218:
+          influxdb_token: "tbLgwVvqgfqcEzNLgFGEc2p8GUAFNai2EIxB2dnFWzguciXbOkXQLjwo2TyjebDQ0h69NafKHsrtlcntNISLjw=="
         10.0.1.77:
+          influxdb_token: "jf0pGQqQWRWttxEXoDjd4G_BMi0rh_9ePreMRoxMflEibF9KqXTztIP7HjHoPo9nLEBWyR71N_aX_H32GOoHBg=="
         10.0.1.109:
+          influxdb_token: "ys_llndABAtTx51FgN5xTKnE4_wrlcbqbtgXWqk-Rf_jVHn-tjPYbN4e3gG5WI7a65z2qNoXJQuzPNDjzsfbBg=="
       vars:
         spring_profiles:
           container1:
