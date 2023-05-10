@@ -25,7 +25,7 @@
 
 
     - name: Build Docker image
-      command: docker build -t {{ app_image }} home/ubuntu/DataGenerator
+      command: docker build -t {{ app_image }} /home/ubuntu/DataGenerator
 
 
     # 컨테이너 제거
