@@ -5,6 +5,9 @@ pipeline {
         DOCKER_HUB_CREDENTIAL = "docker_hub"
         DOCKER_IMAGE = 'scofe/data_division'
         DOCKER_TAG = 'latest'
+        
+        buildName = "DataDivision"
+        discordWebook = credentials("DISCORD_WEBHOOK")
 
         credentialsGithubId = "github"
         repo = "https://github.com/Projcet-E201/DataDivision"
@@ -24,13 +27,13 @@ pipeline {
         stage('Add application.yml') {
             steps {
                 sh "pwd"
-                sh "cp /home/ubuntu/docker-volume/secret/data_generator/application-secret.yaml ./src/main/resources"
+                sh "sudo cp /home/ubuntu/docker-volume/secret/data_generator/application-secret.yaml ./src/main/resources"
             }
         }
 
         stage("Gradle build") {
             steps {
-                sh "chmod +x gradlew"
+                sh "sudo chmod +x gradlew"
                 sh "./gradlew clean build"
             }
         }
@@ -62,9 +65,19 @@ pipeline {
     }
 
     post {
-        always {
-            // Clean up workspace
-            cleanWs()
-        }
+        success {
+                discordSend description: "알림테스트", 
+                  footer: "${env.buildName} 가 성공했습니다.", 
+                  link: env.BUILD_URL, result: currentBuild.currentResult, 
+                  title: "${env.buildName}  job 성공", 
+                  webhookURL: "${env.discordWebook}"
+            }
+            failure {
+                discordSend description: "알림테스트", 
+                  footer: "${env.buildName} 빌드가 실패했습니다.", 
+                  link: env.BUILD_URL, result: currentBuild.currentResult, 
+                  title: "${env.buildName} 젠킨스 job 실패", 
+                  webhookURL: "${env.discordWebook}"
+            }
     }
 }

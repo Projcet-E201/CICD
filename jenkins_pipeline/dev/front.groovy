@@ -5,6 +5,9 @@ pipeline {
         DOCKER_HUB_CREDENTIAL = "docker_hub"
         DOCKER_IMAGE = 'scofe/react'
         DOCKER_TAG = 'latest'
+        
+        buildName = "Front"
+        discordWebook = credentials("DISCORD_WEBHOOK")
 
         credentialsGithubId = "github"
         repo = "https://github.com/Projcet-E201/Front"
@@ -49,9 +52,19 @@ pipeline {
     }
 
     post {
-        always {
-            // Clean up workspace
-            cleanWs()
-        }
+        success {
+                discordSend description: "알림테스트", 
+                  footer: "${env.buildName} 가 성공했습니다.", 
+                  link: env.BUILD_URL, result: currentBuild.currentResult, 
+                  title: "${env.buildName}  job 성공", 
+                  webhookURL: "${env.discordWebook}"
+            }
+            failure {
+                discordSend description: "알림테스트", 
+                  footer: "${env.buildName} 빌드가 실패했습니다.", 
+                  link: env.BUILD_URL, result: currentBuild.currentResult, 
+                  title: "${env.buildName} 젠킨스 job 실패", 
+                  webhookURL: "${env.discordWebook}"
+            }
     }
 }
