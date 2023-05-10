@@ -3,6 +3,7 @@
   become: yes
   vars:
     app_image: scofe/data_generator
+    github_token: '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' # 이 토큰은 노출되지 않도록 주의해주세요!
 
   tasks:
     - name: Install required packages
@@ -13,7 +14,7 @@
 
     - name: Clone the repository
       git:
-        repo: 'https://github.com/Projcet-E201/DataDivision.git'
+        repo: 'https://scofe97:{{ github_token }}@github.com/Projcet-E201/DataDivision.git' 
         dest: '~/DataDivision'
         clone: yes
         update: yes

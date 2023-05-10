@@ -14,17 +14,17 @@ all:
     data_instance_server:
       hosts:
         10.0.1.178:
-          influxdb_token: "Q3i5GKnhvBbCaR5lBafqs7CPVskA_DB7muR3zPF4uw8xQm8J6hOkFAgojbHlFyLqVGNRVD-4qQiVYSahhu_mwA=="
+          influxdb_token: "sVbwgbUgvOoZ5JG9S8B-RobrQ7yQtHD7pmnuUwgWzFV9H5KtfsauV70h5rp7qkenVyRRX8NcE9Scv-3RszXumg=="
         10.0.1.168:
-          influxdb_token: "8WBHSkjwg3GWpJWJKOFIpdBlBCxEyss5Hy4e5POJaw4M2xXClLJgS526jt8Wr1PeVqDozm_-WMPgT8mJBOUtWQ=="
+          influxdb_token: "BC99_vTe8Mua8htUYuOM7adzGKipn7JX78rCp6ePuUIfvLcW5QxDPv9t9b803E3iRLnaP58O1_rthU2kjXRFaQ=="
         10.0.1.65:
-          influxdb_token: "MNPgnZ3WLMDw9dUL-Xf_A5dnStPRAXQkjjudjfw5pVSIxZepMOi1Pymyv8uaBsrwEUmPJ_m2E4JMpgXcssEtyg=="
+          influxdb_token: "EoVxpZ3vDdx-iy8FSY-pqa2BBGmyI6_GL9NVW9SlNvPfcs1l18Dt10IWwTeSd_zX526lanZ01yDzhreiTJhRCw=="
         10.0.1.189:
-          influxdb_token: "tbLgwVvqgfqcEzNLgFGEc2p8GUAFNai2EIxB2dnFWzguciXbOkXQLjwo2TyjebDQ0h69NafKHsrtlcntNISLjw=="
+          influxdb_token: "xUCAOfL5o6FKUs6WhlEqfsEO3EzOh-yEb19D1_PqCBEHfp_Taws-u35sEfkihxTFxDmrWPehbI4spEOsncGm7g=="
         10.0.1.51:
-          influxdb_token: "jf0pGQqQWRWttxEXoDjd4G_BMi0rh_9ePreMRoxMflEibF9KqXTztIP7HjHoPo9nLEBWyR71N_aX_H32GOoHBg=="
+          influxdb_token: "xdzgIZ8TJ5Ee53iRhAzoCBAqZkuObTAzr-VFd6rhErfbYSlfliOAdAE9kxs0pbAd9ZwKb4H8gqpMTH0i3sLBqQ=="
         10.0.1.80:
-          influxdb_token: "ys_llndABAtTx51FgN5xTKnE4_wrlcbqbtgXWqk-Rf_jVHn-tjPYbN4e3gG5WI7a65z2qNoXJQuzPNDjzsfbBg=="
+          influxdb_token: "-uajYiFqn0GliyhaT9ORtgeLikxCnzc1g85RK9v4pqz2mq3cOA8ZkhS7_R8MBU_YrI5rFws-o6LTkl-bqT3FAw=="
       vars:
         spring_profiles:
           container1:
