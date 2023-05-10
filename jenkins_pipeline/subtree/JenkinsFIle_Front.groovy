@@ -5,7 +5,7 @@ pipeline {
 
         // 증명ID (깃허브, 깃랩)
         credentialsGithubId = "github"
-        credentialsGitlabId = "gitlab2"
+        credentialsGitlabId = "gitlab"
     
         // subtree repo이름, 폴더이름
         prefix = 'Front'

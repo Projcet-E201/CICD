@@ -8,7 +8,7 @@ locals {
   data_instance_count = 6
   kafka_instance_count = 3
   ami_id = "ami-04cebc8d6c4f297a3"
-  pem_key = "semsekey"
+  pem_key = "semsekey2"
 
   common_tags = {
     Terraform = "true"

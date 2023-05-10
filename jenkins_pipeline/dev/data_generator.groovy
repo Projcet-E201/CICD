@@ -21,13 +21,6 @@ pipeline {
             }
         }
 
-        // stage('Add application.yml') {
-        //     steps {
-        //         sh "pwd"
-        //         sh "cp /home/ubuntu/secret/data_generator/application-secret.yaml ./src/main/resources"
-        //     }
-        // }
-
         stage("Gradle build") {
             steps {
                 sh "chmod +x gradlew"
@@ -68,7 +61,3 @@ pipeline {
         }
     }
 }
-
-// sudo usermod -aG docker jenkins
-// sudo service jenkins restart
-// sudo su - jenkins -c "docker run hello-world"

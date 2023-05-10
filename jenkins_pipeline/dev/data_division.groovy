@@ -24,7 +24,7 @@ pipeline {
         stage('Add application.yml') {
             steps {
                 sh "pwd"
-                sh "cp /home/ubuntu/secret/data_division/application-sercret.yaml ./src/main/resources"
+                sh "cp /home/ubuntu/docker-volume/secret/data_generator/application-secret.yaml ./src/main/resources"
             }
         }
 
@@ -53,14 +53,12 @@ pipeline {
             }
         }
 
-        // stage('Deploy with Ansible') {
-        //     steps {
-        //         sh 'sudo chmod 644 /home/ubuntu/CICD/server_management/ansible/playbook/data_server/datagenerator.yaml'
+        stage('Deploy with Ansible') {
+            steps {
             
-        //         sh "cat ${env.ANSIBLE_PLAYBOOK_PATH}/data_server/datagenerator.yaml"
-        //         sh "ansible-playbook -i ${env.ANSIBLE_INVENTORY_PATH}/hosts.yaml ${env.ANSIBLE_PLAYBOOK_PATH}/data_server/datagenerator.yaml"
-        //     }
-        // }
+                sh "sudo ansible-playbook -i ${env.ANSIBLE_INVENTORY_PATH}/hosts2.yaml ${env.ANSIBLE_PLAYBOOK_PATH}/main_server/data_division_playbook.yaml"
+            }
+        }
     }
 
     post {
