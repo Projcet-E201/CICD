@@ -19,13 +19,10 @@
         clone: yes
         update: yes
 
-    - name: Copy application-secret.yaml
-      copy:
-        src: '/home/ubuntu/secret/application-secret.yaml'
-        dest: '/home/ubuntu/DataDivision/src/main/resources'
-        owner: 'root'
-        group: 'root'
-        mode: '0644'
+    - name: Copy application-secret.yaml on the remote host
+      command:
+        cmd: cp /home/ubuntu/secret/application-secret.yaml /home/ubuntu/DataDivision/src/main/resources
+
 
     - name: Build Docker image
       command: docker build -t {{ app_image }} ~/DataDivision
