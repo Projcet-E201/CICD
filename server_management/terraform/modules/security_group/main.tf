@@ -41,6 +41,17 @@ resource "aws_security_group_rule" "https_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# 그라파나 인바운드
+resource "aws_security_group_rule" "grafana_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 7000
+  to_port     = 7000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
 
 # proxyManager 접속 허용
 resource "aws_security_group_rule" "proxyManager_inbound" {
@@ -83,6 +94,17 @@ resource "aws_security_group_rule" "portainer_inbound" {
   type        = "ingress"
   from_port   = 9000
   to_port     = 9000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+# 프로메테우스 인바운드
+resource "aws_security_group_rule" "prometheus_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 9090
+  to_port     = 9090
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 }
