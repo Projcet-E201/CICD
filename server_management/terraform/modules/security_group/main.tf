@@ -19,6 +19,29 @@ resource "aws_security_group_rule" "ssh_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# SSH 접속허용
+resource "aws_security_group_rule" "nginx_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 80
+  to_port     = 80
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+# proxyManager 접속 허용
+resource "aws_security_group_rule" "proxyManager_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 8000
+  to_port     = 8000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+
 # jenkins 접속 허용
 resource "aws_security_group_rule" "jenkins_inbound" {
   security_group_id = aws_security_group.this.id
