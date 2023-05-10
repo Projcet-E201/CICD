@@ -28,9 +28,9 @@ ansible all -i ./inventory/hosts.yaml -m command -a "docker ps" -b
 # 데이터 생성서버 배포
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_playbook.yaml
 # 데이터 생성서버 인플럭스 설치
-ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_influx.yaml
-# 데이터 생성서버 인플럭스 설치
-ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_secret.yaml
+ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_influx_playbook.yaml
+# 데이터 생성서버 시크릿 배포
+ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_secret_playbook.yaml
 
 
 ### 카프카 서버
