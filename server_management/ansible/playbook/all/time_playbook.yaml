@@ -1,0 +1,8 @@
+- name: 한국시간 변경
+  hosts: all
+  become: yes
+  tasks:
+    - name: Set timezone
+      command: timedatectl set-timezone Asia/Seoul
+      args:
+        warn: false
