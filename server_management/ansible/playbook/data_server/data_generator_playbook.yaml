@@ -57,11 +57,11 @@
       vars:
         app_container_name: spring_boot_app_container1
         app_profile: "{{ spring_profiles.container1[inventory_hostname] }}"
-        app_port: 8085
+        app_port: 8084
 
     - name: Deploy container 2
       include_tasks: deploy_container.yml
       vars:
         app_container_name: spring_boot_app_container2
         app_profile: "{{ spring_profiles.container2[inventory_hostname] }}"
-        app_port: 8086
+        app_port: 8085
