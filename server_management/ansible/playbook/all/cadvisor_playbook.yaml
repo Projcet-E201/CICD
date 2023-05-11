@@ -15,7 +15,7 @@
 
     - name: Copy docker-compose file
       copy:
-        src: ./cadvisor/docker-compose.yml
+        src: ./cadvisor/docker-compose.yaml
         dest: /home/ubuntu/cadvior/
 
     - name: Run docker-compose
