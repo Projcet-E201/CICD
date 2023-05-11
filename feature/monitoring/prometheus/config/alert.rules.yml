@@ -1,10 +1,10 @@
 groups:
-- name: example
+- name: container_down
   rules:
-  - alert: HighRequestLatency
-    expr: http_request_duration_seconds{job="myjob"} > 0.5
-    for: 10m
+  - alert: ContainerDown
+    expr: absent(container_last_seen{name="your_container_name"})
+    for: 5m
     labels:
-      severity: page
+      severity: critical
     annotations:
-      summary: High request latency
+      summary: "Container {{ $labels.name }} on server {{ $labels.instance }} is down"
