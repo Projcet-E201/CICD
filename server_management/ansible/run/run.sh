@@ -19,9 +19,12 @@ curl -s http://169.254.169.254/latest/meta-data/local-ipv4
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/init.yaml
 ansible-playbook -i ./inventory/hosts2.yaml ./playbook/all/init.yaml
 
-# 자바 & 도커 & 환경설정
+# cadvisor 추가
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/cadvisor_playbook.yaml
 ansible-playbook -i ./inventory/hosts2.yaml ./playbook/all/cadvisor_playbook.yaml
+
+# 한국시간 변경
+ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/time_playbook.yaml
 
 # 도커 정상설치 되었는지 확인
 ansible all -i ./inventory/hosts.yaml -m command -a "docker --version" -b
