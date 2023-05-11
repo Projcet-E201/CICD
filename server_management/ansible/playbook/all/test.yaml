@@ -1,0 +1,21 @@
+- name: 오타수정
+  hosts: all # 이 플레이의 대상 호스트 (인벤토리 파일에서 정의됨)
+  become: yes # 필요한 경우 권한을 상승시킵니다 (sudo로 권한 상승)
+  tasks: # 이 플레이에 대해 실행할 작업 목록
+    - name: Update Docker service configuration file
+      ansible.builtin.lineinfile:
+        path: /lib/systemd/system/docker.service
+        regexp: '-metrics-addr'
+        line: 'ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 --metrics-addr 0.0.0.0:9323 --experimental'
+      become: yes
+
+    - name: Reload systemd to apply changes
+      ansible.builtin.systemd:
+        daemon_reload: yes
+      become: yes
+
+    - name: Restart Docker service
+      ansible.builtin.service:
+        name: docker
+        state: restarted
+      become: yes
