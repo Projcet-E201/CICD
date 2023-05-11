@@ -121,6 +121,17 @@ resource "aws_security_group_rule" "kafka_text_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# Docker config 연결
+resource "aws_security_group_rule" "docker_config_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 9323
+  to_port     = 9323
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
 # kafka jmx 통신
 resource "aws_security_group_rule" "jmx_inbound" {
   security_group_id = aws_security_group.this.id
