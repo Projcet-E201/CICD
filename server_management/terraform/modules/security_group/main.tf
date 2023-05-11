@@ -121,6 +121,17 @@ resource "aws_security_group_rule" "kafka_text_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# kafka jmx 통신
+resource "aws_security_group_rule" "jmx_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 9404
+  to_port     = 9404
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
 # kafka client와 통신
 resource "aws_security_group_rule" "zookeeper_inbound_2181" {
   security_group_id = aws_security_group.this.id
