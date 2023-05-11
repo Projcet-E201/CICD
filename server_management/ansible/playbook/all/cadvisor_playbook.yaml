@@ -12,11 +12,15 @@
         path: /home/ubuntu/cadvisor
         state: directory
 
-
     - name: Copy docker-compose file
       copy:
         src: ./cadvisor/docker-compose.yaml
         dest: /home/ubuntu/cadvior/
+
+    - name: Stop existing cadvisor if running
+      docker_compose:
+        project_src: /home/ubuntu/cadvisor/
+        state: absent
 
     - name: Run docker-compose
       docker_compose:
