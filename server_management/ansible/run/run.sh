@@ -18,10 +18,16 @@ curl -s http://169.254.169.254/latest/meta-data/local-ipv4
 # 자바 & 도커 & 환경설정
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/init.yaml
 ansible-playbook -i ./inventory/hosts2.yaml ./playbook/all/init.yaml
+
+# 자바 & 도커 & 환경설정
+ansible-playbook -i ./inventory/hosts.yaml ./playbook/all/cadvisor_playbook.yaml
+ansible-playbook -i ./inventory/hosts2.yaml ./playbook/all/cadvisor_playbook.yaml
+
 # 도커 정상설치 되었는지 확인
 ansible all -i ./inventory/hosts.yaml -m command -a "docker --version" -b
 # 도커 컨테이너 확인
 ansible all -i ./inventory/hosts.yaml -m command -a "docker ps" -b
+
 
 
 ### 데이터 서버
@@ -31,7 +37,7 @@ ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_influx_playbook.yaml
 # 데이터 생성서버 시크릿 배포
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_secret_playbook.yaml
-# 데이터 생성서버 시크릿 배포
+# 데이터 생성서버 폴더삭제 
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_delete_playbook.yaml
 
 
