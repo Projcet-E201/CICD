@@ -19,7 +19,7 @@
 
 
 - name: 원격 호스트에 Docker & Docker-compose 설치 및 구성
-  hosts: all
+  hosts: data_division_server
   become: yes
   tasks:
     - name: Docker 설치를 위한 필수 패키지 설치
@@ -89,7 +89,7 @@
         cmd: docker-compose --version
 
 - name: 도커 추가 설정 진행
-  hosts: all
+  hosts: data_division_server
   become: yes
   tasks:
     - name: 도커 네트워크가 존재하는지 확인
@@ -127,7 +127,7 @@
         state: restarted
         
 - name: 파이썬 라이브러리 설치
-  hosts: all
+  hosts: data_division_server
   become: yes
   tasks:
     - name: Install python3-apt
