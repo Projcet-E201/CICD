@@ -42,6 +42,8 @@ ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_secret_playbook.yaml
 # 데이터 생성서버 폴더삭제 
 ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_server/data_generator_delete_playbook.yaml
+# 데이터 디비전서버 배포
+ansible-playbook -i ./inventory/hosts.yaml ./playbook/data_division_server/data_division_playbook.yaml
 
 
 ### 카프카 서버
