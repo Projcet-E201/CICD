@@ -98,6 +98,17 @@ resource "aws_security_group_rule" "influxdb_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# influxdb 접속 허용
+resource "aws_security_group_rule" "data_division" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 8090
+  to_port     = 8090
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
 # portainer 접속 허용
 resource "aws_security_group_rule" "portainer_inbound" {
   security_group_id = aws_security_group.this.id
