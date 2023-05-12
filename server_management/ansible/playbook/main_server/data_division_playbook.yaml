@@ -1,5 +1,5 @@
 - name: data_division 배포
-  hosts: main_server1
+  hosts: data_division_server
   vars:
     compose_file: "./data_division"
     container_name: "data_division"

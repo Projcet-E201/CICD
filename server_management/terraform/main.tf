@@ -79,6 +79,30 @@ resource "aws_instance" "jenkins" {
   }
 }
 
+# 데이터 디비전 서버
+# DataDivision에 사용됨
+resource "aws_instance" "DataDivision" {
+  ami           = local.ami_id
+  instance_type = "t3.large"
+  key_name      = local.pem_key
+  subnet_id     = module.vpc.subnet_id
+
+  user_data = ""
+
+  root_block_device {
+    volume_type = "gp3"
+    volume_size = 200
+  }
+
+  vpc_security_group_ids = [
+    module.security_group.security_group_id
+  ]
+
+  tags ={
+    Name="data_division-instance"
+  }
+}
+
 
 # Elastic IP for Jenkins instance
 resource "aws_eip" "jenkins" {
@@ -86,6 +110,15 @@ resource "aws_eip" "jenkins" {
 
   tags ={
     Name = "jenkins-instance-eip"
+  }
+}
+
+# Elastic IP for DataDivision instance
+resource "aws_eip" "DataDivision" {
+  instance = aws_instance.DataDivision.id
+
+  tags ={
+    Name = "data_division-instance-eip"
   }
 }
 
