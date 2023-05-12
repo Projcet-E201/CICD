@@ -4,6 +4,11 @@
     state: absent
   ignore_errors: yes
 
+- name: Ensure network exists
+  ansible.builtin.docker_network:
+    name: br_app
+    state: present
+
 - name: Run and configure Spring Boot Docker container
   ansible.builtin.docker_container:
     name: "{{ app_container_name }}"
