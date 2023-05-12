@@ -15,5 +15,8 @@
     ports:
       - "127.0.0.1:{{ app_port }}:{{ app_port }}"
     restart_policy: always
+    networks:
+      - name: br_app
+    networks_cli_compatible: yes
     env:
       PROFILE: "{{ app_profile }}"
