@@ -51,5 +51,5 @@ ansible-playbook -i ./inventory/hosts.yaml ./playbook/kafka_server/kafka.yaml
 
 
 ### 메인 서버
-ansible-playbook -i ./inventory/hosts2.yaml ./playbook/main_server/data_division_playbook.yaml
-ansible-playbook -i ./inventory/hosts2.yaml ./playbook/main_server/react_playbook.yaml
+ansible-playbook -i ./inventory/hosts.yaml ./playbook/main_server/data_api.yaml
+ansible-playbook -i ./inventory/hosts.yaml ./playbook/main_server/react_playbook.yaml

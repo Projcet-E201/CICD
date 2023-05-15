@@ -1,5 +1,5 @@
 - name: api 배포
-  hosts: main_server1
+  hosts: data_division_server
   vars:
     compose_file: "./data_api"
     container_name: "api"

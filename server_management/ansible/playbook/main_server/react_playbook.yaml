@@ -1,5 +1,5 @@
 - name: 리액트 앱 빌드
-  hosts: main_server1
+  hosts: data_division_server
   vars:
     container_name: "react"
     image_tag: "scofe/react:latest"
