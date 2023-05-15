@@ -41,6 +41,17 @@ resource "aws_security_group_rule" "https_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# 3000 허용
+resource "aws_security_group_rule" "react_inbound" {
+  security_group_id = aws_security_group.this.id
+
+  type        = "ingress"
+  from_port   = 3000
+  to_port     = 3000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
 # 그라파나 인바운드
 resource "aws_security_group_rule" "grafana_inbound" {
   security_group_id = aws_security_group.this.id
