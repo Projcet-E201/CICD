@@ -49,3 +49,7 @@ all:
     data_division_server:
       hosts:
         10.0.1.19:
+    main_server:
+      hosts:
+        10.0.1.45:
+

@@ -11,9 +11,6 @@ services:
       - ./influxdb-data:/var/lib/influxdb2
     networks:
       - br_app
-    cpu_quota: 70000
-    cpu_period: 100000
-
 
 networks:
   br_app:

@@ -9,6 +9,11 @@ services:
       - "7000:7000"
     environment:
       - GF_SERVER_HTTP_PORT=7000
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=smtp.gmail.com:587
+      - GF_SMTP_USER=tscofet@gmail.com
+      - GF_SMTP_PASSWORD=sksmscjswp!5
+      - GF_SMTP_SKIP_VERIFY=true
     volumes:
       - /home/ubuntu/docker-volume/grafana/volume:/var/lib/grafana
     networks:
