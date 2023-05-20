@@ -18,7 +18,7 @@ scrape_configs:
     metrics_path: '/jmx'
     scrape_interval: 5s
     static_configs:
-      - targets: ['43.200.71.179:9404', '3.36.10.145:9404', '43.200.130.111:9404']
+      - targets: ['3.38.164.6:9404', '3.34.254.10:9404', '15.165.7.7:9404']
 
 rule_files:
   - "alert.rules.yml"

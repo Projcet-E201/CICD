@@ -21,26 +21,27 @@ all:
           influxdb_token: "EoVxpZ3vDdx-iy8FSY-pqa2BBGmyI6_GL9NVW9SlNvPfcs1l18Dt10IWwTeSd_zX526lanZ01yDzhreiTJhRCw=="
         10.0.1.189:
           influxdb_token: "xUCAOfL5o6FKUs6WhlEqfsEO3EzOh-yEb19D1_PqCBEHfp_Taws-u35sEfkihxTFxDmrWPehbI4spEOsncGm7g=="
-        10.0.1.51:
-          influxdb_token: "xdzgIZ8TJ5Ee53iRhAzoCBAqZkuObTAzr-VFd6rhErfbYSlfliOAdAE9kxs0pbAd9ZwKb4H8gqpMTH0i3sLBqQ=="
-        10.0.1.80:
-          influxdb_token: "-uajYiFqn0GliyhaT9ORtgeLikxCnzc1g85RK9v4pqz2mq3cOA8ZkhS7_R8MBU_YrI5rFws-o6LTkl-bqT3FAw=="
+        # 10.0.1.51:
+        #   influxdb_token: "xdzgIZ8TJ5Ee53iRhAzoCBAqZkuObTAzr-VFd6rhErfbYSlfliOAdAE9kxs0pbAd9ZwKb4H8gqpMTH0i3sLBqQ=="
+        # 10.0.1.80:
+        #   influxdb_token: "-uajYiFqn0GliyhaT9ORtgeLikxCnzc1g85RK9v4pqz2mq3cOA8ZkhS7_R8MBU_YrI5rFws-o6LTkl-bqT3FAw=="
       vars:
         spring_profiles:
           container1:
             10.0.1.178: client1
-            10.0.1.168: client3
-            10.0.1.65: client5
-            10.0.1.189: client7
-            10.0.1.51: client9
-            10.0.1.80: client11
+            10.0.1.168: client4
+            10.0.1.65: client7
+            10.0.1.189: client10
           container2:
             10.0.1.178: client2
-            10.0.1.168: client4
-            10.0.1.65: client6
-            10.0.1.189: client8
-            10.0.1.51: client10
-            10.0.1.80: client12
+            10.0.1.168: client5
+            10.0.1.65: client8
+            10.0.1.189: client11
+          container3:
+            10.0.1.178: client3
+            10.0.1.168: client6
+            10.0.1.65: client9
+            10.0.1.189: client12
     kafka_server:
       hosts:
         10.0.1.226:

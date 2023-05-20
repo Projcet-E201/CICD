@@ -50,16 +50,29 @@
         state: absent
       ignore_errors: yes
 
+    - name: Remove existing container 3 if it's running
+      ansible.builtin.docker_container:
+        name: spring_boot_app_container3
+        state: absent
+      ignore_errors: yes
+
     - name: Deploy container 1
       include_tasks: deploy_container.yml
       vars:
         app_container_name: spring_boot_app_container1
         app_profile: "{{ spring_profiles.container1[inventory_hostname] }}"
-        app_port: 8084
+        app_port: 8083
 
     - name: Deploy container 2
       include_tasks: deploy_container.yml
       vars:
         app_container_name: spring_boot_app_container2
         app_profile: "{{ spring_profiles.container2[inventory_hostname] }}"
+        app_port: 8084
+    
+    - name: Deploy container 3
+      include_tasks: deploy_container.yml
+      vars:
+        app_container_name: spring_boot_app_container3
+        app_profile: "{{ spring_profiles.container3[inventory_hostname] }}"
         app_port: 8085
