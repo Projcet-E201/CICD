@@ -76,17 +76,6 @@ resource "aws_security_group_rule" "proxyManager_inbound" {
 }
 
 
-# cadvisor 접속 허용
-resource "aws_security_group_rule" "cadvisor_inbound" {
-  security_group_id = aws_security_group.this.id
-
-  type        = "ingress"
-  from_port   = 8080
-  to_port     = 8080
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
-
 # jenkins 접속 허용
 resource "aws_security_group_rule" "jenkins_inbound" {
   security_group_id = aws_security_group.this.id
@@ -165,16 +154,6 @@ resource "aws_security_group_rule" "kafka_text_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
-# Docker config 연결
-resource "aws_security_group_rule" "docker_config_inbound" {
-  security_group_id = aws_security_group.this.id
-
-  type        = "ingress"
-  from_port   = 9323
-  to_port     = 9323
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
 
 # kafka jmx 통신
 resource "aws_security_group_rule" "jmx_inbound" {
@@ -229,7 +208,7 @@ resource "aws_security_group_rule" "docker_api_inbound" {
   from_port   = 2375
   to_port     = 2375
   protocol    = "tcp"
-  cidr_blocks = ["10.0.1.0/24", "43.201.55.255/32", "3.36.77.155/32"]
+  cidr_blocks = ["10.0.1.0/24"]
 }
 
 
