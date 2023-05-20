@@ -1,11 +1,13 @@
 # 입력변수
 # 모듈을 사용할 때 이러한 변수에 대한 값을 제공한다.
 variable "instance_count" { type = number }
+variable "instance_type" {type = string}
 variable "ami_id" { type = string }
 variable "key_name" { type = string }
 variable "subnet_id" { type = string }
 variable "security_group_id" { type = string }
 variable "instance_name_prefix" { type = string }
+variable "auto_stop" { type = string }
 
 
 # instance 생성
@@ -14,7 +16,7 @@ resource "aws_instance" "this" {
   for_each = toset([for idx in range(var.instance_count) : tostring(idx)])
 
   ami           = var.ami_id
-  instance_type = "t3.medium"
+  instance_type = var.instance_type
   key_name      = var.key_name
   subnet_id     = var.subnet_id
 
@@ -25,6 +27,7 @@ resource "aws_instance" "this" {
   tags = {
     Name      = "${var.instance_name_prefix}-${each.key + 1}"
     Terraform = "true"
+    AUTOSTOP_ENABLE = var.auto_stop 
   }
 
   root_block_device {
@@ -32,4 +35,9 @@ resource "aws_instance" "this" {
     volume_size = 50
   }
 
+}
+
+output "instance_id" {
+  value = [for instance in aws_instance.this : instance.id]
+  description = "The ID of the instances"
 }
